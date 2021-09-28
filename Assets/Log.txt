@@ -1,0 +1,255 @@
+Nome: Cavalo Entrada: 09/05/2021 16:05:58
+Nome: Cavalo Nivel: 0 Nota: 6
+Nome: Cavalo Nivel: 1 Nota: 9
+Nome: Cavalo Saida: 09/05/2021 16:06:30 Nivel que parou: 2
+Nome: Cavalo Nivel: 2 Nota: 6
+Nome: Cavalo Nivel: 3 Nota: 8
+Nome: Cavalo Saida: 09/05/2021 16:07:37 Nivel que parou: 4
+Nome: Cavalo Nivel: 4 Nota: 6
+Nome: Cavalo Nivel: 5 Nota: 6
+Nome: Cavalo Saida: 09/05/2021 16:08:07 Nivel que parou: 6
+Nome: Cavalo Saida: 09/05/2021 16:08:19 Nivel que parou: 6
+Nome: Cavalo Nivel: 6 Nota: 8
+Nome: Cavalo Saida: 09/05/2021 16:08:34 Nivel que parou: 7
+Nome: Cavalo Saida: 09/05/2021 16:08:52 Nivel que parou: 7
+Nome: Cavalo Nivel: 7 Nota: 2
+Nome: Cavalo Saida: 09/05/2021 16:09:03 Nivel que parou: 7
+Nome: Cavalo Nivel: 7 Nota: 8
+Nome: Cavalo Saida: 09/05/2021 16:09:29 Nivel que parou: 8
+Nome: Cavalo Nivel: 8 Nota: 1
+Nome: Cavalo Nivel: 8 Nota: 6
+Nome: Cavalo Saida: 09/05/2021 16:09:58 Nivel que parou: 9
+Nome: Cavalo Saida: 09/05/2021 16:10:15 Nivel que parou: 9
+Nome: ra Entrada: 09/05/2021 17:08:18
+Nome: RafaelOkay Entrada: 09/05/2021 18:04:27
+Nome: RafaelOkay Saida: 09/05/2021 18:04:51 Nivel que parou: 0
+Nome: RafaelOkay Nivel: 0 Nota: 9
+Nome: RafaelOkay Nivel: 1 Nota: 9
+Nome: RafaelOkay Nivel: 2 Nota: 8
+Nome: RafaelOkay Nivel: 3 Nota: 9
+Nome: RafaelOkay Nivel: 4 Nota: 9
+Nome: RafaelOkay Nivel: 5 Nota: 8
+Nome: RafaelOkay Nivel: 6 Nota: 2
+Nome: RafaelOkay Nivel: 6 Nota: 8
+Nome: RafaelOkay Nivel: 7 Nota: 6
+Nome: RafaelOkay Nivel: 8 Nota: 8
+Nome: RafaelOkay Saida: 09/05/2021 18:09:12 Nivel que parou: 9
+Nome: rafa Entrada: 10/05/2021 00:34:59
+Nome: rafael Entrada: 10/05/2021 01:56:45
+Nome: rafael Nivel: 0 Nota: 9
+Nome: rafael Nivel: 1 Nota: 6
+Nome: rafael Nivel: 2 Nota: 6
+Nome: rafael Nivel: 3 Nota: 6
+Nome: rafa Entrada: 10/05/2021 02:04:03
+Nome: rafa Nivel: 0 Nota: 6
+Nome: rafa Nivel: 1 Nota: 9
+Nome: rafa Entrada: 10/05/2021 02:11:01
+Nome: rafa Nivel: 0 Nota: 6
+Nome: rafa Entrada: 10/05/2021 02:23:15
+Nome: rafael Entrada: 10/05/2021 02:23:56
+Nome: rafael Nivel: 0 Nota: 8
+Nome: rafa Entrada: 10/05/2021 02:24:37
+Nome: rafa Nivel: 0 Nota: 5
+Nome: rafa Nivel: 0 Nota: 8
+Nome: rafa Entrada: 10/05/2021 02:29:22
+Nome: rafa Nivel: 0 Nota: 6
+Nome: rafael Entrada: 10/05/2021 04:16:31
+Nome: rafael Nivel: 0 Nota: 6
+Nome: Rafael Entrada: 10/05/2021 04:18:05
+Nome: Rafael Nivel: 0 Nota: 6
+Nome: Rafael Nivel: 1 Nota: 8
+Nome: Rafael Nivel: 2 Nota: 8
+Nome: Rafael Nivel: 3 Nota: 2
+Nome: Rafael Entrada: 10/05/2021 04:29:13
+Nome: Rafael Entrada: 10/05/2021 04:29:45
+Nome: Rafael Nivel: 0 Nota: 10
+Nome: Rafael Nivel: 1 Nota: 8
+Nome: Rafael Entrada: 10/05/2021 09:27:07
+Nome: Rafael Saida: 10/05/2021 09:27:25 Nivel que parou: 0
+Nome: rafa Entrada: 10/05/2021 09:28:53
+Nome: rafa Nivel: 0 Nota: 6
+Nome: rafa Nivel: 1 Nota: 4
+Nome: rafa Entrada: 11/05/2021 08:14:52
+Nome: Laertes Entrada: 21/06/2021 22:55:16
+Nome: Laertes Nivel: 0 Nota: 4
+Nome: Laertes Saida: 21/06/2021 22:57:43 Nivel que parou: 0
+Nome: Laertes Saida: 21/06/2021 22:57:45 Nivel que parou: 0
+Nome: Laertes Saida: 21/06/2021 22:57:47 Nivel que parou: 0
+Nome: Laertes Saida: 21/06/2021 22:57:47 Nivel que parou: 0
+Nome: Laertes Saida: 21/06/2021 22:57:47 Nivel que parou: 0
+Nome: Laertes Saida: 21/06/2021 22:57:48 Nivel que parou: 0
+Nome: Laertes Saida: 21/06/2021 22:57:50 Nivel que parou: 0
+Nome: Laertes Saida: 21/06/2021 22:57:50 Nivel que parou: 0
+Nome: Laertes Saida: 21/06/2021 22:58:00 Nivel que parou: 0
+Nome: Laertes Saida: 21/06/2021 22:58:01 Nivel que parou: 0
+Nome: Laertes Saida: 21/06/2021 22:58:01 Nivel que parou: 0
+Nome: Laertes Saida: 21/06/2021 22:58:02 Nivel que parou: 0
+Nome: Laertes Saida: 21/06/2021 22:58:02 Nivel que parou: 0
+Nome: Laertes Saida: 21/06/2021 22:58:02 Nivel que parou: 0
+Nome: Laertes Saida: 21/06/2021 22:58:02 Nivel que parou: 0
+Nome: Laertes Saida: 21/06/2021 22:58:03 Nivel que parou: 0
+Nome: Laertes Entrada: 14/07/2021 22:18:37
+Nome: Laertes Nivel: 0 Nota: 6
+Nome: Laertes Nivel: 1 Nota: 6
+Nome: Laertes Saida: 14/07/2021 22:21:17 Nivel que parou: 2
+Nome: Laertes Saida: 14/07/2021 22:21:20 Nivel que parou: 2
+Nome: Laertes Saida: 14/07/2021 22:21:20 Nivel que parou: 2
+Nome: Laertes Saida: 14/07/2021 22:21:25 Nivel que parou: 2
+Nome: Laertes Saida: 14/07/2021 22:21:30 Nivel que parou: 2
+Nome: Laertes Saida: 14/07/2021 22:21:56 Nivel que parou: 2
+Nome: Laertes Entrada: 14/07/2021 22:32:31
+Nome: Laertes Saida: 14/07/2021 22:32:35 Nivel que parou: 0
+Nome: Laertes Entrada: 14/07/2021 22:32:48
+Nome: Laertes Saida: 14/07/2021 22:32:51 Nivel que parou: 0
+Nome: Laertes Entrada: 14/07/2021 22:33:51
+Nome: Laertes Saida: 14/07/2021 22:33:55 Nivel que parou: 0
+Nome: Laertes Saida: 18/07/2021 21:00:33 Nivel que parou: 0
+Nome: Laertes Saida: 18/07/2021 21:00:41 Nivel que parou: 0
+Nome: Laertes Saida: 18/07/2021 21:00:43 Nivel que parou: 0
+Nome: Laertes Saida: 18/07/2021 21:01:06 Nivel que parou: 0
+Nome: Laertes Saida: 18/07/2021 21:01:19 Nivel que parou: 0
+Nome:  Entrada: 18/07/2021 21:05:44
+Nome:  Saida: 18/07/2021 21:06:04 Nivel que parou: 0
+Nome:  Entrada: 21/07/2021 23:21:58
+Nome:  Nivel: 0 Nota: 2
+Nome:  Saida: 21/07/2021 23:22:57 Nivel que parou: 0
+Nome:  Entrada: 26/07/2021 23:33:41
+Nome:  Entrada: 26/07/2021 23:50:01
+Nome:  Entrada: 27/07/2021 00:05:01
+Nome:  Entrada: 27/07/2021 00:06:26
+Nome:  Entrada: 31/07/2021 21:26:35
+Nome:  Entrada: 31/07/2021 21:27:55
+Nome:  Entrada: 31/07/2021 21:27:56
+Nome:  Entrada: 31/07/2021 21:28:52
+Nome:  Entrada: 31/07/2021 21:28:52
+Nome:  Entrada: 31/07/2021 21:28:52
+Nome:  Entrada: 31/07/2021 21:28:53
+Nome:  Entrada: 31/07/2021 21:32:33
+Nome:  Entrada: 31/07/2021 21:32:34
+Nome:  Entrada: 31/07/2021 21:32:45
+Nome:  Entrada: 31/07/2021 21:32:52
+Nome:  Entrada: 31/07/2021 21:32:53
+Nome:  Entrada: 31/07/2021 21:32:54
+Nome:  Entrada: 31/07/2021 23:34:43
+Nome:  Entrada: 31/07/2021 23:38:43
+Nome:  Entrada: 01/08/2021 01:25:34
+Nome:  Entrada: 01/08/2021 01:25:45
+Nome: Laertes Nivel: 0 Nota: 8
+Nome: Laertes Nivel: 1 Nota: 6
+Nome: Laertes Nivel: 2 Nota: 5
+Nome: Laertes Saida: 01/08/2021 01:32:32 Nivel que parou: 2
+Nome: Laertes Entrada: 01/08/2021 01:32:45
+Nome: Laertes Saida: 01/08/2021 01:34:09 Nivel que parou: 0
+Nome: Laertes Entrada: 01/08/2021 01:35:35
+Nome: Laertes Entrada: 01/08/2021 01:36:42
+Nome: Laertes Entrada: 01/08/2021 01:36:52
+Nome: Laertes Saida: 01/08/2021 01:37:00 Nivel que parou: 0
+Nome:  Saida: 08/08/2021 23:36:44 Nivel que parou: 0
+Nome:  Saida: 08/08/2021 23:36:47 Nivel que parou: 0
+Nome:  Entrada: 09/08/2021 00:55:47
+Nome:  Entrada: 09/08/2021 00:55:48
+Nome:  Entrada: 09/08/2021 00:55:49
+Nome:  Saida: 09/08/2021 01:14:38 Nivel que parou: 0
+Nome: Laertes Entrada: 09/08/2021 01:15:29
+Nome: Laertes Entrada: 11/08/2021 23:17:12
+Nome: Laertes Entrada: 11/08/2021 23:17:13
+Nome: Laertes Entrada: 11/08/2021 23:17:14
+Nome: Laertes Entrada: 11/08/2021 23:17:14
+Nome: Laertes Entrada: 11/08/2021 23:17:14
+Nome: Laertes Entrada: 11/08/2021 23:17:14
+Nome: Laertes Entrada: 11/08/2021 23:17:14
+Nome: Laertes Entrada: 11/08/2021 23:17:15
+Nome: Laertes Entrada: 11/08/2021 23:17:21
+Nome: Laertes Entrada: 11/08/2021 23:17:24
+Nome: Laertes Saida: 11/08/2021 23:17:37 Nivel que parou: 0
+Nome: Laertes Entrada: 12/08/2021 00:39:39
+Nome: Laertes Entrada: 12/08/2021 00:45:18
+Nome: Laertes Entrada: 12/08/2021 00:53:45
+Nome: Laertes Entrada: 12/08/2021 00:55:05
+Nome: Laertes Saida: 12/08/2021 00:55:15 Nivel que parou: 0
+Nome: Laertes Entrada: 15/08/2021 20:45:39
+Nome: Laertes Entrada: 15/08/2021 20:45:39
+Nome: Laertes Entrada: 15/08/2021 20:45:40
+Nome: Laertes Entrada: 15/08/2021 20:45:41
+Nome: Laertes Entrada: 15/08/2021 20:45:41
+Nome: Laertes Saida: 15/08/2021 20:45:52 Nivel que parou: 0
+Nome: Laertes Saida: 15/08/2021 20:45:59 Nivel que parou: 0
+Nome: Laertes Entrada: 15/08/2021 20:49:44
+Nome: Laertes Entrada: 15/08/2021 20:50:29
+Nome: Laertes Entrada: 15/08/2021 20:51:47
+Nome: Laertes Entrada: 15/08/2021 20:51:56
+Nome: Laertes Saida: 15/08/2021 20:52:06 Nivel que parou: 0
+Nome:  Entrada: 21/08/2021 18:26:00
+Nome:  Saida: 21/08/2021 18:26:05 Nivel que parou: 0
+Nome: Laertes Entrada: 21/08/2021 18:26:24
+Nome: Laertes Saida: 21/08/2021 18:26:28 Nivel que parou: 0
+Nome: Laertes Entrada: 21/08/2021 19:50:38
+Nome: Laertes Nivel: 0 Nota: 6
+Nome: Laertes Entrada: 21/08/2021 19:56:40
+Nome: Laertes Nivel: 0 Nota: 6
+Nome: Laertes Entrada: 21/08/2021 19:59:05
+Nome: Laertes Nivel: 0 Nota: 4
+Nome: Laertes Entrada: 21/08/2021 20:03:44
+Nome: Laertes Nivel: 0 Nota: 5
+Nome: Laertes Entrada: 21/08/2021 20:12:39
+Nome: Laertes Nivel: 0 Nota: 5
+Nome: Laertes Entrada: 21/08/2021 20:19:27
+Nome: Laertes Saida: 21/08/2021 20:20:39 Nivel que parou: 0
+Nome: Laertes Entrada: 21/08/2021 20:35:03
+Nome: Laertes Nivel: 0 Nota: 5
+Nome: Laertes Saida: 21/08/2021 20:35:37 Nivel que parou: 0
+Nome: Anna Entrada: 21/08/2021 20:38:52
+Nome: Anna Nivel: 0 Nota: 8
+Nome: Anna Saida: 21/08/2021 20:39:17 Nivel que parou: 1
+Nome: Laertes Entrada: 21/08/2021 22:05:01
+Nome: Laertes Entrada: 21/08/2021 22:05:58
+Nome: Laertes Entrada: 21/08/2021 22:16:27
+Nome: Laertes Saida: 21/08/2021 22:56:29 Nivel que parou: 0
+Nome: Laertes Entrada: 21/08/2021 22:56:40
+Nome: Laertes Entrada: 21/08/2021 22:57:34
+Nome: Laertes Entrada: 21/08/2021 22:58:36
+Nome: Laertes Entrada: 21/08/2021 23:04:55
+Nome: Laertes Entrada: 21/08/2021 23:39:03
+Nome: Laertes Entrada: 21/08/2021 23:42:05
+Nome: Laertes Entrada: 21/08/2021 23:47:33
+Nome: Laertes Entrada: 21/08/2021 23:55:13
+Nome: Laertes Entrada: 21/08/2021 23:55:44
+Nome: Laertes Entrada: 21/08/2021 23:59:35
+Nome: Laertes Nivel: 0 Nota: 8
+Nome: Laertes Entrada: 22/08/2021 10:51:30
+Nome: Laertes Nivel: 0 Nota: 6
+Nome: Laertes Nivel: 1 Nota: 9
+Nome: Laertes Saida: 22/08/2021 10:53:29 Nivel que parou: 2
+Nome: Laertes Entrada: 23/08/2021 23:04:07
+Nome: Laertes Entrada: 23/08/2021 23:04:15
+Nome: Laertes Saida: 23/08/2021 23:04:24 Nivel que parou: 0
+Nome: Laertes Entrada: 26/08/2021 18:53:04
+Nome: Laertes Entrada: 26/08/2021 19:16:35
+Nome: Laertes Nivel: 0 Nota: 6
+Nome: Laertes Nivel: 1 Nota: 6
+Nome: Laertes Saida: 26/08/2021 19:19:23 Nivel que parou: 2
+Nome: Laertes Entrada: 26/08/2021 19:28:38
+Nome: Laertes Nivel: 0 Nota: 10
+Nome: Laertes Nivel: 1 Nota: 6
+Nome: Laertes Nivel: 2 Nota: 9
+Nome: Laertes Nivel: 3 Nota: 1
+Nome: Laertes Saida: 26/08/2021 19:33:38 Nivel que parou: 3
+Nome: Laertes Entrada: 26/08/2021 19:41:13
+Nome: Laertes Nivel: 0 Nota: 9
+Nome: Laertes Entrada: 26/08/2021 19:42:24
+Nome: Laertes Nivel: 0 Nota: 9
+Nome: Laertes Entrada: 26/08/2021 19:45:23
+Nome: Laertes Nivel: 0 Nota: 9
+Nome: Laertes Entrada: 26/08/2021 19:49:31
+Nome: Laertes Nivel: 0 Nota: 8
+Nome: Laertes Entrada: 26/08/2021 19:57:11
+Nome: Laertes Nivel: 0 Nota: 9
+Nome: Laertes Nivel: 1 Nota: 6
+Nome: Laertes Saida: 26/08/2021 19:57:55 Nivel que parou: 2
+Nome: Laertes Entrada: 30/08/2021 10:10:14
+Nome: Laertes Entrada: 30/08/2021 10:10:49
+Nome: Laertes Saida: 30/08/2021 10:11:14 Nivel que parou: 0
+Nome: Laertes Entrada: 30/08/2021 10:11:20
+Nome: Laertes Saida: 30/08/2021 10:11:33 Nivel que parou: 0
+Nome: Laertes Entrada: 30/08/2021 10:11:41
+Nome: Laertes Saida: 30/08/2021 10:13:44 Nivel que parou: 0
