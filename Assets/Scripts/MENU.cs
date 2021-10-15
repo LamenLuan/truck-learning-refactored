@@ -21,7 +21,7 @@ public class MENU : MonoBehaviour
     {
         Debug.Log("Sair");
         Application.Quit();
-        SceneManager.LoadScene("CADASTRO"); // modificado para que retorne a tela de Menu ao clicar no botão 'Sair'
+        SceneManager.LoadScene("MENU"); // modificado para que retorne a tela de Menu ao clicar no botão 'Sair'
     }
 
 }
