@@ -7,19 +7,19 @@ public class ImgRand : MonoBehaviour
 {
     public Sprite[] listaSprites = new Sprite[9];
     public static ImgRand Instance;
-    SpriteRenderer renderer;
+    SpriteRenderer spriteRenderer;
     public int indexIMG;
     
     void Awake()
     {
         Instance = this;
-        renderer = GetComponent<SpriteRenderer>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
     
     void Start()
     {
       indexIMG = PlayerPrefs.GetInt("nivel"); //serve apenas para informar qual tabuleiro vai ser apresentado no mapa e também as frases
-      renderer.sprite = listaSprites[indexIMG];
+      spriteRenderer.sprite = listaSprites[indexIMG];
     }
 
     void Update()
