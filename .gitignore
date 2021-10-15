@@ -97,3 +97,7 @@ crashlytics-build.properties
 
 # Arquivos de dados do Sqlite
 *.db
+.sonarqube/bin/SonarScanner.MSBuild.Tasks.dll
+.sonarqube/bin/SonarScanner.MSBuild.Common.dll
+.vscode/settings.json
+Assets/Log.txt
