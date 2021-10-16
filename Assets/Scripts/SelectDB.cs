@@ -18,14 +18,9 @@ public class SelectDB : MonoBehaviour
     private IDataReader reader; // leitor
     [SerializeField] private InputField nome;
     [SerializeField] private InputField senha;
-    public Text buttonText;
+    [SerializeField] private Button iniciarBtn;
 
-    void Start()
-    {
-        Logar();
-    }
-
-    public void Logar()
+    public void Logar() // Invocada pelo botao Iniciar
     {
         string connectionString = "URI=file:" + Application.dataPath + "/truck_learning.db";
         int id_encontrado = 0;
@@ -38,20 +33,17 @@ public class SelectDB : MonoBehaviour
         command.CommandText = query;
         reader = command.ExecuteReader();
 
-        if (reader.Read())
-        {
+        if ( reader.Read() ) {
             id_encontrado = reader.GetInt32(0);
         }
 
-        if (id_encontrado > 0)
-        {
+        if (id_encontrado > 0) {
             PlayerPrefs.DeleteAll();
             PlayerPrefs.SetString("nome", nome.text);
             PlayerPrefs.SetInt("nivel", 0);
             PlayerPrefs.SetInt("frase", 0);
             SceneManager.LoadScene("D_DIFICIL");
-        } else 
-        {
+        } else  {
             SetTextValidacao();
         }
 
@@ -60,8 +52,17 @@ public class SelectDB : MonoBehaviour
         connection.Close();
     }
 
+    private void ResetTextValidacao() // Invocada por SetTextValidacao()
+    {
+        iniciarBtn.GetComponentInChildren<Text>().text = "Iniciar";
+        iniciarBtn.enabled = true;
+    }
+
     public void SetTextValidacao()
     {
-        buttonText.text = "Usuário não encontrado";
+        iniciarBtn.enabled = false;
+        iniciarBtn.GetComponentInChildren<Text>().text =
+            "Usuário não encontrado";
+        Invoke("ResetTextValidacao", 1f);
     }
 }

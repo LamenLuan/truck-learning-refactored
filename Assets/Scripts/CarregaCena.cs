@@ -14,7 +14,6 @@ public class CarregaCena : MonoBehaviour
     public void carregaCena(string nomeCena)
     {
         SceneManager.LoadScene(nomeCena);
-
     }
 
     public void carregaCenaFinal()

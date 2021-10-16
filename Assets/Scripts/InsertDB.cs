@@ -18,14 +18,9 @@ public class InsertDB : MonoBehaviour
     private IDataReader reader; // leitor
     [SerializeField] private InputField nome;
     [SerializeField] private InputField senha;
-    public Text buttonText;
+    [SerializeField] private Button registrarBtn;
 
-    void Start()
-    {
-        Insere();
-    }
-
-    public void Insere()
+    public void Insere() // Invocada pelo botao Registrar
     {
         int validacao = ConsultaUser();
 
@@ -63,31 +58,43 @@ public class InsertDB : MonoBehaviour
         command.CommandText = querySelect;
         reader = command.ExecuteReader();
 
-        if (reader.Read())
-        {
+        if ( reader.Read() ) {
             encontrou_id = reader.GetInt32(0);
         }
 
-        if (encontrou_id > 0)
-        {
+        if (encontrou_id > 0) {
             reader.Close();
             reader = null;
             command.Dispose();
             connection.Close();
             return encontrou_id;
-        } else
-        {
+        } else {
             return 0;
         }
     }
 
+    private void LoadMenu() // Invocada por SetTextSucesso()
+    {
+        SceneManager.LoadScene("MENU");
+    }
+
     public void SetTextSucesso()
     {
-        buttonText.text = "Usuário Registrado!";
+        registrarBtn.enabled = false;
+        registrarBtn.GetComponentInChildren<Text>().text = "Usuário registrado!";
+        Invoke("LoadMenu", 1.5f);
+    }
+
+    private void ResetTextValidacao() // Invocada por SetTextValidacao()
+    {
+        registrarBtn.GetComponentInChildren<Text>().text = "Registrar";
+        registrarBtn.enabled = true;
     }
 
     public void SetTextValidacao()
     {
-        buttonText.text = "Usuário já existente";
+        registrarBtn.enabled = false;
+        registrarBtn.GetComponentInChildren<Text>().text = "Usuário já existente";
+        Invoke("ResetTextValidacao", 1f);
     }
 }
