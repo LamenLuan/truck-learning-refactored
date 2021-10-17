@@ -19,11 +19,10 @@ public class Frases : MonoBehaviour
          
     void Start()
     {
-        popup = true;
+        popup = false;
         mudo = false;
         tocar = GetComponent<AudioSource>();
         Instance = this;
-
     }
     // Update is called once per frame
     void Update()
