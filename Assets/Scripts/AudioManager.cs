@@ -1,12 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-
-/*
- PAULO, ESSA CLASSE GERENCIA O AUDIO DO JOGO (FUNDO E EFEITOS ESPECIAIS)
-    OBS: AS FRASES EM AUDIO SÃO GERENCIADAS POR OUTRA CLASSE.
- */
+// ESSA CLASSE GERENCIA O AUDIO DO JOGO (FUNDO E EFEITOS ESPECIAIS)
+//   OBS: AS FRASES EM AUDIO SÃO GERENCIADAS POR OUTRA CLASSE.
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager instance;
@@ -39,7 +34,6 @@ public class AudioManager : MonoBehaviour
         musicaBG.clip = clips[0];
         musicaBG.volume = 1f;
         musicaBG.Play();
-        
     }
 
     public void BGToca(int i)
@@ -92,6 +86,5 @@ public class AudioManager : MonoBehaviour
     {
         Destroy(gameObject);
     }
-
 
 }
