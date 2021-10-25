@@ -95,7 +95,6 @@ public class peças : MonoBehaviour
        DicasControl.Instance.ativaBalao();
        Frases.Instance.popup = true; //utilizo a variavel auxiliar popup na classe Frases, uso essa variavel pra pausar a fala das frases com a popup aberta
        Frases.Instance.tempo = tempoAUX;
-       Debug.Log("Tempo depois que resetei a tempo: " + Frases.Instance.tempo);
     }
 
     public void ativa()
@@ -103,11 +102,7 @@ public class peças : MonoBehaviour
         DicasControl.Instance.setaFrase();
         DicasControl.Instance.desativaBalao();
         Frases.Instance.popup = false; //utilizo a variavel auxiliar popup na classe Frases, uso essa variavel pra pausar a fala das frases com a popup aberta
-        Debug.Log("TempoFrases.Instance.tempo exato quando ativei: "+ Frases.Instance.tempo);
         tempoAUX = Frases.Instance.tempo; //uso a variavel tempAUX para pegar o tempo exato que parei na reproducao das frases, pra continuar depois
-        
-
-
     }
 
 }
