@@ -2,6 +2,7 @@
 using System.Runtime.InteropServices;
 using UnityEngine;
 
+// Created by Luan Leme
 public class ControladorMinimizar : MonoBehaviour
 {
     [DllImport("user32.dll")]

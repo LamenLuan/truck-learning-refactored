@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+
+// Created by Luan Leme
 public class ControladorDeTabs : MonoBehaviour
 {
     private EventSystem system;
