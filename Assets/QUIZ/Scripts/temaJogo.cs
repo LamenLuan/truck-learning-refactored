@@ -6,17 +6,19 @@ using UnityEngine.SceneManagement;
 
 public class temaJogo : MonoBehaviour
 {
-    public string[] nomeTema;
+    [SerializeField] private Text quadroTxt;
     private int idTema;
+    [SerializeField] private string[] dicas;
 
     public void Start()
     {
-        idTema = 0;
+        idTema = PlayerPrefs.GetInt("nivel");
+        for (int i = idTema * 8; i < (idTema + 1) * 8; ++i)
+            quadroTxt.text += dicas[i] + '\n';
     }
 
-    public void selecioneTema()
+    public void selecioneTema() // Invoked by
     {
-        idTema = PlayerPrefs.GetInt("nivel");
         PlayerPrefs.SetInt("idTema", idTema);
         int notaF = PlayerPrefs.GetInt("notafinal" + idTema.ToString());
         int acertos= PlayerPrefs.GetInt("acertos" + idTema.ToString()); ;
