@@ -40,16 +40,19 @@ public class InsertDB : MonoBehaviour
             command.CommandText = query;
             command.ExecuteNonQuery();
             connection.Close();
-        } else 
-        {
-            SetTextValidacao();
         }
+        else if(validacao == -1) SetBotaoText("Preencha os campos");
+        else SetBotaoText("Usuário já existente");
     }
 
     public int ConsultaUser()
     {
         string connectionString = "URI=file:" + Application.dataPath + "/truck_learning.db";
         int encontrou_id = 0;
+
+        if(nome.text.Trim().Length == 0 || senha.text.Trim().Length == 0)
+            return -1;
+
         connection = new SqliteConnection(connectionString);
         command = connection.CreateCommand();
         connection.Open();
@@ -91,10 +94,10 @@ public class InsertDB : MonoBehaviour
         registrarBtn.enabled = true;
     }
 
-    public void SetTextValidacao()
+    public void SetBotaoText(string mensagem)
     {
         registrarBtn.enabled = false;
-        registrarBtn.GetComponentInChildren<Text>().text = "Usuário já existente";
+        registrarBtn.GetComponentInChildren<Text>().text = mensagem;
         Invoke("ResetTextValidacao", 1f);
     }
 }
