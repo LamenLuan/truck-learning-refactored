@@ -31,7 +31,7 @@ public class MyDBConnection : MonoBehaviour
         connection.Open();
 
         //string deletar_tabela_usuario = "DROP TABLE IF EXISTS usuario;";
-        string tabela_usuario = "CREATE TABLE IF NOT EXISTS usuario(id INTEGER PRIMARY KEY AUTOINCREMENT, nome VARCHAR(50), senha VARCHAR(15), pontuacao INTEGER);";
+        string tabela_usuario = "CREATE TABLE IF NOT EXISTS usuario(id INTEGER PRIMARY KEY AUTOINCREMENT, nome VARCHAR(50), senha VARCHAR(15), pontuacao INTEGER, nivel INTEGER);";
         command.CommandText = tabela_usuario;
         command.ExecuteNonQuery();
         connection.Close();

@@ -3,9 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-// Necessary imports
-using System;
-using System.IO;
 using System.Data;
 using Mono.Data.Sqlite;
 
@@ -39,10 +36,10 @@ public class SelectDB : MonoBehaviour
 
         if (id_encontrado > 0) {
             PlayerPrefs.DeleteAll();
-            PlayerPrefs.SetString("nome", nome.text);
-            PlayerPrefs.SetInt("nivel", 0);
             PlayerPrefs.SetInt("frase", 0);
+            RecebeDadosUsuario();
             SceneManager.LoadScene("D_DIFICIL");
+            print("Executou depois do load");
         } else  {
             SetTextValidacao();
         }
@@ -50,6 +47,17 @@ public class SelectDB : MonoBehaviour
         reader.Close();
         command.Dispose();
         connection.Close();
+    }
+
+    private void RecebeDadosUsuario()
+    {
+        Usuario usuario = Usuario.Instancia;
+        usuario.Nome = nome.text;
+        usuario.Senha = senha.text;
+        print( "Leu o nivel " + reader.GetInt32(3) );
+        usuario.Pontuacao = reader.GetInt32(3);
+        print( "Leu o nivel " + reader.GetInt32(4) );
+        usuario.Nivel = reader.GetInt32(4);
     }
 
     private void ResetTextValidacao() // Invocada por SetTextValidacao()
