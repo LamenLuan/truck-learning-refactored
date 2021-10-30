@@ -25,24 +25,21 @@ public class TXT : MonoBehaviour
 
     public void SalvaNomeHora()
     {
-        File.AppendAllText(path, "Nome: " + PlayerPrefs.GetString("nome")+" ");
+        File.AppendAllText(path, "Nome: " + Usuario.Instancia.Nome +" ");
         File.AppendAllText(path, "Entrada: " + System.DateTime.Now + "\n");
-
     }
 
     public void SalvaSaida()
     {
-        File.AppendAllText(path, "Nome: " + PlayerPrefs.GetString("nome") + " ");
+        File.AppendAllText(path, "Nome: " + Usuario.Instancia.Nome + " ");
         File.AppendAllText(path, "Saida: " + System.DateTime.Now + " ");
-        File.AppendAllText(path, "Nivel que parou: " + PlayerPrefs.GetInt("nivel") + "\n");
-
+        File.AppendAllText(path, "Nivel que parou: " + Usuario.Instancia.Nivel + "\n");
     }
 
     public void SalvaNota()
     {
-
-        File.AppendAllText(path, "Nome: " + PlayerPrefs.GetString("nome") + " ");
-        File.AppendAllText(path, "Nivel: " + PlayerPrefs.GetInt("nivel") + " ");
+        File.AppendAllText(path, "Nome: " + Usuario.Instancia.Nome + " ");
+        File.AppendAllText(path, "Nivel: " + Usuario.Instancia.Nivel + " ");
         File.AppendAllText(path, "Nota: " + PlayerPrefs.GetInt("nota") + "\n");
     }
 

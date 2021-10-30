@@ -24,7 +24,8 @@ public class InsertDB : MonoBehaviour
     {
         int validacao = ConsultaUser();
 
-        string connectionString = "URI=file:" + Application.dataPath + "/truck_learning.db";
+        string connectionString =
+            "URI=file:" + Application.dataPath + "/truck_learning.db";
 
         if(validacao == 0)
         {
@@ -34,7 +35,9 @@ public class InsertDB : MonoBehaviour
             command = connection.CreateCommand();
             connection.Open();  
 
-            query = "INSERT INTO usuario(nome, senha, pontuacao) VALUES('"+ nome.text +"', '"+ senha.text +"', "+ 0 +");";
+            query =
+                "INSERT INTO usuario(nome, senha, pontuacao, nivel) VALUES('" + 
+                nome.text +"', '"+ senha.text + "', " + 0 + ", " + 0 + ");";
 
             SetTextSucesso();
             command.CommandText = query;
@@ -47,9 +50,11 @@ public class InsertDB : MonoBehaviour
 
     public int ConsultaUser()
     {
-        string connectionString = "URI=file:" + Application.dataPath + "/truck_learning.db";
+        string connectionString =
+            "URI=file:" + Application.dataPath + "/truck_learning.db";
         int encontrou_id = 0;
 
+        // Checando se campos estao preechidos
         if(nome.text.Trim().Length == 0 || senha.text.Trim().Length == 0)
             return -1;
 
@@ -57,7 +62,8 @@ public class InsertDB : MonoBehaviour
         command = connection.CreateCommand();
         connection.Open();
 
-        string querySelect = "SELECT id FROM usuario WHERE nome = '"+ nome.text +"';";
+        string querySelect =
+            "SELECT id FROM usuario WHERE nome = '" + nome.text + "';";
         command.CommandText = querySelect;
         reader = command.ExecuteReader();
 

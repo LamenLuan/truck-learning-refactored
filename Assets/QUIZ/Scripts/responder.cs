@@ -99,7 +99,8 @@ public class responder : MonoBehaviour
 
             if (media > 6)
             {
-                PlayerPrefs.SetInt("nivel", PlayerPrefs.GetInt("nivel") + 1);
+                Usuario.Instancia.Nivel++;
+                UpdateScoreDB.Instance.AtualizaNivel();
                 SceneManager.LoadScene("CERTIFICACAO");
             }
             else

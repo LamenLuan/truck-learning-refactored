@@ -12,7 +12,7 @@ public class temaJogo : MonoBehaviour
 
     public void Start()
     {
-        idTema = PlayerPrefs.GetInt("nivel");
+        idTema = Usuario.Instancia.Nivel;
         for (int i = idTema * 8; i < (idTema + 1) * 8; ++i)
             quadroTxt.text += dicas[i] + '\n';
     }
@@ -20,15 +20,14 @@ public class temaJogo : MonoBehaviour
     public void selecioneTema() // Invoked by
     {
         PlayerPrefs.SetInt("idTema", idTema);
-        int notaF = PlayerPrefs.GetInt("notafinal" + idTema.ToString());
-        int acertos= PlayerPrefs.GetInt("acertos" + idTema.ToString()); ;
+        int notaF = PlayerPrefs.GetInt( "notafinal" + idTema.ToString() );
+        int acertos= PlayerPrefs.GetInt( "acertos" + idTema.ToString() );
         jogar();
     }
 
     public void jogar()
     {
-
-        SceneManager.LoadScene("T"+idTema.ToString());
+        SceneManager.LoadScene( "T" + idTema.ToString() );
         //posso trabalhar tanto com o INDEX da cena
         //tanto com o nome da cena
        

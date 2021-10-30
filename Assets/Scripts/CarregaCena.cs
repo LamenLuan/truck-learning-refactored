@@ -18,8 +18,7 @@ public class CarregaCena : MonoBehaviour
 
     public void carregaCenaFinal()
     {
-        int idTema = PlayerPrefs.GetInt("nivel");
-        if (idTema == 9)
+        if (Usuario.Instancia.Nivel == 9)
         {
             SceneManager.LoadScene("CERTIFICACAOFINAL");
         }
@@ -27,7 +26,6 @@ public class CarregaCena : MonoBehaviour
         {
             SceneManager.LoadScene("D_DIFICIL");
         }
-        
     }
 
 }

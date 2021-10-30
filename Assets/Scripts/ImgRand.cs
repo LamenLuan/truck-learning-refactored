@@ -18,7 +18,7 @@ public class ImgRand : MonoBehaviour
     
     void Start()
     {
-      indexIMG = PlayerPrefs.GetInt("nivel"); //serve apenas para informar qual tabuleiro vai ser apresentado no mapa e também as frases
+      indexIMG = Usuario.Instancia.Nivel; //serve apenas para informar qual tabuleiro vai ser apresentado no mapa e também as frases
       spriteRenderer.sprite = listaSprites[indexIMG];
     }
 

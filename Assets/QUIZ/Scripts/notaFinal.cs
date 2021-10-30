@@ -18,7 +18,7 @@ public class notaFinal : MonoBehaviour
 
     public void Start()
     {
-        nomeJogador.text = PlayerPrefs.GetString("nome");
+        nomeJogador.text = Usuario.Instancia.Nome;
         idTema = PlayerPrefs.GetInt("idTema");
         notaF = PlayerPrefs.GetInt("notafinal" + idTema.ToString());
         acertos = PlayerPrefs.GetInt("acertos" + idTema.ToString());

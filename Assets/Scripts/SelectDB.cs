@@ -26,7 +26,10 @@ public class SelectDB : MonoBehaviour
         command = connection.CreateCommand();
         connection.Open();
 
-        string query = "SELECT id FROM usuario WHERE nome = '"+ nome.text +"' AND senha = '"+ senha.text +"';";
+        string query =
+            "SELECT id, pontuacao, nivel FROM usuario WHERE nome = '" +
+            nome.text + "' AND senha = '" + senha.text + "';";
+
         command.CommandText = query;
         reader = command.ExecuteReader();
 
@@ -39,8 +42,7 @@ public class SelectDB : MonoBehaviour
             PlayerPrefs.SetInt("frase", 0);
             RecebeDadosUsuario();
             SceneManager.LoadScene("D_DIFICIL");
-            print("Executou depois do load");
-        } else  {
+        } else {
             SetTextValidacao();
         }
 
@@ -54,10 +56,8 @@ public class SelectDB : MonoBehaviour
         Usuario usuario = Usuario.Instancia;
         usuario.Nome = nome.text;
         usuario.Senha = senha.text;
-        print( "Leu o nivel " + reader.GetInt32(3) );
-        usuario.Pontuacao = reader.GetInt32(3);
-        print( "Leu o nivel " + reader.GetInt32(4) );
-        usuario.Nivel = reader.GetInt32(4);
+        usuario.Pontuacao = reader.GetInt32(1);
+        usuario.Nivel = reader.GetInt32(2);
     }
 
     private void ResetTextValidacao() // Invocada por SetTextValidacao()

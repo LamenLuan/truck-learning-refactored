@@ -11,7 +11,6 @@ public class UpdateScoreDB : MonoBehaviour
     private IDbConnection connection; // variável para fazer a conexão com o banco
     private IDbCommand command; // variável que vai dar o comando para o banco
     private IDataReader reader; // leitor
-    
     public static UpdateScoreDB Instance; // variável que vai pegar o valor da nota e atualizar no banco
 
     void Start()
@@ -19,39 +18,48 @@ public class UpdateScoreDB : MonoBehaviour
         Instance = this;
     }
 
-    public void AtualizaPontuacao()
+    private void ExecutaQuery(string query)
     {
-        int notaAtual = ConsultaNota();
-        int notaAtt = 0;
-        int nota_player = PlayerPrefs.GetInt("nota");
-        string nome_player = PlayerPrefs.GetString("nome");
-
-        notaAtt = notaAtual + nota_player;   
-
-        string connectionString = "URI=file:" + Application.dataPath + "/truck_learning.db";
+        string connectionString =
+            "URI=file:" + Application.dataPath + "/truck_learning.db";
 
         connection = new SqliteConnection(connectionString);
         command = connection.CreateCommand();
         connection.Open();
-
-        string query = "UPDATE usuario SET pontuacao = "+ notaAtt +" WHERE nome = '"+ nome_player +"';";
 
         command.CommandText = query;
         command.ExecuteNonQuery();
         connection.Close();
     }
 
+    public void AtualizaPontuacao()
+    {
+        int notaAtual = ConsultaNota();
+        int notaAtt = 0;
+        int nota_player = PlayerPrefs.GetInt("nota");
+
+        notaAtt = notaAtual + nota_player;   
+
+        ExecutaQuery(
+            "UPDATE usuario SET pontuacao = " + notaAtt + " WHERE nome = '" +
+            Usuario.Instancia.Nome + "';"
+        );
+    }
+
     public int ConsultaNota()
     {
-        string connectionString = "URI=file:" + Application.dataPath + "/truck_learning.db";
         int notaAtt = 0;
-        string nome_player = PlayerPrefs.GetString("nome");
+        string connectionString =
+            "URI=file:" + Application.dataPath + "/truck_learning.db";
 
         connection = new SqliteConnection(connectionString);
         command = connection.CreateCommand();
         connection.Open();
 
-        string querySelect = "SELECT pontuacao FROM usuario WHERE nome = '"+ nome_player +"';";
+        string querySelect =
+            "SELECT pontuacao FROM usuario WHERE nome = '" +
+            Usuario.Instancia.Nome + "';";
+
         command.CommandText = querySelect;
         reader = command.ExecuteReader();
 
@@ -65,5 +73,13 @@ public class UpdateScoreDB : MonoBehaviour
         command.Dispose();
         connection.Close();
         return notaAtt;
+    }
+
+    public void AtualizaNivel()
+    {
+        ExecutaQuery(
+            "UPDATE usuario SET nivel = " + Usuario.Instancia.Nivel + 
+            " WHERE nome = '" + Usuario.Instancia.Nome + "';"
+        );
     }
 }
