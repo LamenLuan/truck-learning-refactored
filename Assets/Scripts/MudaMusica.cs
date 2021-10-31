@@ -15,7 +15,8 @@ public class MudaMusica : MonoBehaviour
             AudioManager.instance.BGToca(0);
         }
         else if(nomeCena == "D_DIFICIL" && nivel < 9) {
-            AudioManager.instance.BGToca(nivel + 1);
+            int index = nivel == 0 ? 1 : nivel + 3;
+            AudioManager.instance.BGToca(index);
         }
         else if (nomeCena == "CERTIFICACAO") {
             AudioManager.instance.BGToca(0);
