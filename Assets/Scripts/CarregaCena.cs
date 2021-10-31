@@ -1,14 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
-/*
- Classe que tem a função de iniciar qualquer outra cena
-Utilizamos para tranzitar de uma cena para a outra 
-O método carregaCenaFinal só é chamado quando terminamos o questionário, ali eu verifico se o cara já jogou todos os níveis 
-(dai apresento a tela final) ou se tem níveis pra ele continuar
- */
 public class CarregaCena : MonoBehaviour
 {
     public void carregaCena(string nomeCena)
@@ -26,6 +18,11 @@ public class CarregaCena : MonoBehaviour
         {
             SceneManager.LoadScene("QUEBRA_CABECA");
         }
+    }
+
+    public void carregaPerguntas() // Invoked by CONGRATS
+    {
+        SceneManager.LoadScene("T" + Usuario.Instancia.Nivel);
     }
 
 }

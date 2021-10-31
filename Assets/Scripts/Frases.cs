@@ -24,6 +24,7 @@ public class Frases : MonoBehaviour
         tocar = GetComponent<AudioSource>();
         Instance = this;
     }
+    
     // Update is called once per frame
     void Update()
     {
@@ -482,10 +483,6 @@ public class Frases : MonoBehaviour
 
             }
         }
-
-
-
     }
-
     
 }

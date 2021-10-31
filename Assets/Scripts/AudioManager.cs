@@ -38,8 +38,9 @@ public class AudioManager : MonoBehaviour
 
     public void BGToca(int i)
     {
+        bool somAtivo = musicaBG.isPlaying || sonsFX.isPlaying;
         musicaBG.clip = clips[i];
-        musicaBG.Play();
+        if(somAtivo) musicaBG.Play();
     }
 
     public void SonsFXToca(int i)
