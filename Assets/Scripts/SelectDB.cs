@@ -39,9 +39,10 @@ public class SelectDB : MonoBehaviour
 
         if (id_encontrado > 0) {
             PlayerPrefs.DeleteAll();
-            PlayerPrefs.SetInt("frase", 0);
             RecebeDadosUsuario();
-            SceneManager.LoadScene("D_DIFICIL");
+            // Depende da RecebeDadosUsuario()
+            PlayerPrefs.SetInt("frase", Usuario.Instancia.Nivel * 8); 
+            SceneManager.LoadScene("QUEBRA_CABECA");
         } else {
             SetTextValidacao();
         }

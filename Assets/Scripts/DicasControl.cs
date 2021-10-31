@@ -1,12 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
-/*
- Essa classe é responsável em gerenciar o balão popup com a dica que aparece a cada 2 peças montadas
- */
-
+// Essa classe é responsável em gerenciar o balão popup com a dica que aparece
+// a cada 2 peças montadas
 public class DicasControl : MonoBehaviour
 {
     public static DicasControl Instance;
@@ -24,7 +20,6 @@ public class DicasControl : MonoBehaviour
         panel.transform.GetChild(0).gameObject.SetActive(true);
         panel.transform.GetChild(1).gameObject.SetActive(true);
         //panel.enabled = false;
-    
     }
 
 

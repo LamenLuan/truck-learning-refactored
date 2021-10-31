@@ -24,7 +24,7 @@ public class CarregaCena : MonoBehaviour
         }
         else
         {
-            SceneManager.LoadScene("D_DIFICIL");
+            SceneManager.LoadScene("QUEBRA_CABECA");
         }
     }
 

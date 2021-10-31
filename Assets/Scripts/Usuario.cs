@@ -12,8 +12,7 @@
     }
 
     public static Usuario Instancia {
-        get
-        {
+        get {
             if (_instancia == null) _instancia = new Usuario();
             return _instancia;
         }
