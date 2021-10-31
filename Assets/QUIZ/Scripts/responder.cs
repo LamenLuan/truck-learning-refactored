@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
@@ -29,87 +28,105 @@ public class responder : MonoBehaviour
     {
         idTema = PlayerPrefs.GetInt("idTema");
         idPergunta = 0;
-        
         questoes = perguntas.Length;
-        
         proximaPergunta();
+    }
 
+    private void resetaCorBotoes()
+    {
+        Text[] respostas = {respostaA, respostaB, respostaC, respostaD};
+
+        for (int i = 0; i < 4; i++) {
+            Image btnImg = respostas[i].GetComponentInParent<Image>();
+            btnImg.color = new Color(1, 1, 1);
+        }
+    }
+
+    private void encontraRespostaCorreta(string[] incorreta)
+    {
+        List<string[]> alternativas = new List<string[]>{
+            alternativaA, alternativaB, alternativaC, alternativaD
+        };
+        List<Text> respostas = new List<Text>{
+            respostaA, respostaB, respostaC, respostaD
+        };
+        
+        int index = alternativas.IndexOf(incorreta);
+        alternativas.RemoveAt(index);
+        respostas.RemoveAt(index);
+
+        for (int i = 0; i < 3; i++)
+        {
+            var alternativa = alternativas[i];
+            if(alternativa[idPergunta] == corretas[idPergunta]) {
+                Image btnImg = respostas[i].GetComponentInParent<Image>();
+                btnImg.color = new Color(0, 1, 0);
+            }
+        }
     }
 
     public void verificaResposta(string alternativa)
     {
-        if (alternativa == "A")
-        {
-            if(alternativaA[idPergunta] == corretas[idPergunta])
-            {
-                acertos++;
-            }
-        }else if(alternativa == "B")
-        {
-            if (alternativaB[idPergunta] == corretas[idPergunta])
-            {
-                acertos++;
-            }
+        Text resposta;
+        string[] alternativaEscolhida;
+
+        if (alternativa == "A") {
+            alternativaEscolhida = alternativaA;
+            resposta = respostaA;
+        } else if (alternativa == "B") {
+            alternativaEscolhida = alternativaB;
+            resposta = respostaB;
+        } else if (alternativa == "C") {
+            alternativaEscolhida = alternativaC;
+            resposta = respostaC;
+        } else {
+            alternativaEscolhida = alternativaD;
+            resposta = respostaD;
         }
-        else if (alternativa == "C")
-        {
-            if (alternativaC[idPergunta] == corretas[idPergunta])
-            {
-                acertos++;
-            }
-        }
-        else if (alternativa == "D")
-        {
-            if (alternativaD[idPergunta] == corretas[idPergunta])
-            {
-                acertos++;
-            }
+
+        if(alternativaEscolhida[idPergunta] == corretas[idPergunta]) {
+            acertos++;
+            AudioManager.instance.SonsFXToca(3);
+            resposta.GetComponentInParent<Image>().color = new Color(0, 1, 0);
+
+        } else {
+            AudioManager.instance.SonsFXToca(4);
+            resposta.GetComponentInParent<Image>().color = new Color(1, 0, 0);
+            encontraRespostaCorreta(alternativaEscolhida);
         }
 
         idPergunta++;
-        proximaPergunta();
+        Invoke("proximaPergunta", 1.5f);
     }
 
     void proximaPergunta()
     {
-        
-        if (idPergunta < questoes)
-        {
+        resetaCorBotoes();
+        if (idPergunta < questoes) {
             pergunta.text = perguntas[idPergunta];
             respostaA.text = alternativaA[idPergunta];
             respostaB.text = alternativaB[idPergunta];
             respostaC.text = alternativaC[idPergunta];
             respostaD.text = alternativaD[idPergunta];
-            infoRespostas.text = "Respondendo " + (idPergunta + 1) + " de " + questoes.ToString() + " perguntas.";
-           
-        }
-        else
-        {
-            media = 10 * (acertos / questoes); //calcula a media com base no %
-            notaFinal = Mathf.RoundToInt(media); //arredonda para o próximo inteiro
+            infoRespostas.text = "Respondendo " + (idPergunta + 1) + " de " +
+                questoes.ToString() + " perguntas.";
+        } else {
+            media = 10 * (acertos / questoes); // Calcula a media com base no %
+            notaFinal = Mathf.RoundToInt(media); // Arredonda para o próximo int
 
-            
-  
-                PlayerPrefs.SetInt("notafinal" + idTema.ToString(), notaFinal);
-                PlayerPrefs.SetInt("acertos" + idTema.ToString(), (int)acertos);
-
+            PlayerPrefs.SetInt("notafinal" + idTema.ToString(), notaFinal);
+            PlayerPrefs.SetInt("acertos" + idTema.ToString(), (int)acertos);
             PlayerPrefs.SetInt("nota", notaFinal);
             TXT.Instance.SalvaNota();
             UpdateScoreDB.Instance.AtualizaPontuacao();
 
-            if (media > 6)
-            {
+            if (media > 6) {
                 Usuario.Instancia.Nivel++;
                 UpdateScoreDB.Instance.AtualizaNivel();
                 SceneManager.LoadScene("CERTIFICACAO");
             }
-            else
-            {
-                SceneManager.LoadScene("FAIL");
-            }
+            else SceneManager.LoadScene("FAIL");
         }
-        
-
     }
 
 }
