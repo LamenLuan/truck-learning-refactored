@@ -1,4 +1,4 @@
-﻿class Usuario
+﻿class Usuario // Singleton
 {
     private static Usuario _instancia;
     private string _nome, _senha;
