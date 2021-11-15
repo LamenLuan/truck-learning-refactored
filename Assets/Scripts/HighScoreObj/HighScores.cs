@@ -9,6 +9,5 @@
         this.Nome = nome;
         this.Pontuacao = pontuacao;
         this.ID = id;
-
     }
 }
