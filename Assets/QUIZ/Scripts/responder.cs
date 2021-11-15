@@ -6,26 +6,32 @@ using UnityEngine.SceneManagement;
 public class responder : MonoBehaviour
 {
     private int idTema;
-
+    public Text infoRespostas;
     public Text pergunta;
     public Text respostaA;
     public Text respostaB;
     public Text respostaC;
     public Text respostaD;
-    public Text infoRespostas;
+    private Text[] respostas;
 
     public string[] perguntas; //armazena todas as perguntas
+    public string[] corretas; //todas as respostas corretas
     public string[] alternativaA; //todas as alternativas A
     public string[] alternativaB; //todas as alternativas B
     public string[] alternativaC; //todas as alternativas C
     public string[] alternativaD; //todas as alternativas D
-    public string[] corretas; //todas as respostas corretas
+    private string[][] alternativas;
 
     private int idPergunta, notaFinal;
     private float acertos, questoes, media;
 
     public void Start()
     {
+        respostas = new Text[] {respostaA, respostaB, respostaC, respostaD};
+        alternativas = new string[][] {
+            alternativaA, alternativaB, alternativaC, alternativaD
+        };
+
         idTema = PlayerPrefs.GetInt("idTema");
         idPergunta = 0;
         questoes = perguntas.Length;
@@ -36,7 +42,7 @@ public class responder : MonoBehaviour
     {
         Text[] respostas = {respostaA, respostaB, respostaC, respostaD};
 
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < respostas.Length; i++) {
             Image btnImg = respostas[i].GetComponentInParent<Image>();
             btnImg.color = new Color(1, 1, 1);
         }
@@ -44,22 +50,18 @@ public class responder : MonoBehaviour
 
     private void encontraRespostaCorreta(string[] incorreta)
     {
-        List<string[]> alternativas = new List<string[]>{
-            alternativaA, alternativaB, alternativaC, alternativaD
-        };
-        List<Text> respostas = new List<Text>{
-            respostaA, respostaB, respostaC, respostaD
-        };
+        List<string[]> alternativasList = new List<string[]>(this.alternativas);
+        List<Text> respostasList = new List<Text>(this.respostas);
         
-        int index = alternativas.IndexOf(incorreta);
-        alternativas.RemoveAt(index);
-        respostas.RemoveAt(index);
+        int index = alternativasList.IndexOf(incorreta);
+        alternativasList.RemoveAt(index);
+        respostasList.RemoveAt(index);
 
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < alternativasList.Count; i++)
         {
             var alternativa = alternativas[i];
             if(alternativa[idPergunta] == corretas[idPergunta]) {
-                Image btnImg = respostas[i].GetComponentInParent<Image>();
+                Image btnImg = respostasList[i].GetComponentInParent<Image>();
                 btnImg.color = new Color(0, 1, 0);
             }
         }
@@ -104,10 +106,10 @@ public class responder : MonoBehaviour
         resetaCorBotoes();
         if (idPergunta < questoes) {
             pergunta.text = perguntas[idPergunta];
-            respostaA.text = alternativaA[idPergunta];
-            respostaB.text = alternativaB[idPergunta];
-            respostaC.text = alternativaC[idPergunta];
-            respostaD.text = alternativaD[idPergunta];
+            for (int i = 0; i < respostas.Length; i++) {
+                string[] perguntasAux = alternativas[i];
+                respostas[i].text = perguntasAux[idPergunta];
+            }
             infoRespostas.text = "Respondendo " + (idPergunta + 1) + " de " +
                 questoes.ToString() + " perguntas.";
         } else {
