@@ -45,25 +45,26 @@ public class GetHighScores : MonoBehaviour
 
     private void ShowScores()
     {
-        int n = 1;
         GetScores();
 
-        for(IIterator iter = highScores.CreateIterator(); iter.HasNext();) {
-            GameObject tmpObject = Instantiate(scorePrefab);
+        IIterator iter = highScores.CreateIterator();
+        for (int i = 1; iter.HasNext(); i++)
+        {
+            GameObject tmpObj = Instantiate(scorePrefab);
 
             HighScore tmpScore = iter.Next();
 
-            tmpObject.GetComponent<HighScoreScript>().SetScore(
-                tmpScore.Nome, tmpScore.Pontuacao.ToString(), "#" + (n++)
+            tmpObj.GetComponent<HighScoreScript>().SetScore(
+                tmpScore.Nome, tmpScore.Pontuacao.ToString(), "#" + i
             );
 
-            tmpObject.transform.SetParent(scoreParent);
+            tmpObj.transform.SetParent(scoreParent);
 
-            tmpObject.GetComponent<RectTransform>().localScale = new Vector3(
+            tmpObj.GetComponent<RectTransform>().localScale = new Vector3(
                 1, 1, 1
             );
 
-            tmpObject.GetComponent<RectTransform>().localPosition = new Vector3(
+            tmpObj.GetComponent<RectTransform>().localPosition = new Vector3(
                 transform.position.x, transform.position.y, 0
             );
         }
