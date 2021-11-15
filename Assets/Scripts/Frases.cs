@@ -10,7 +10,6 @@ using UnityEngine;
 public class Frases : MonoBehaviour
 {
     public static Frases Instance;
-    //public Sprite[] ListaFrases = new Sprite[13];
     public AudioClip[] Lista;
     public AudioSource tocar;
     public float tempo;

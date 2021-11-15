@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 
+// Created by Luan Leme
 public class HighScoreRepository : IHighScoreAggregate // Concrete Aggregate
 {
     private List<HighScore> highScores;

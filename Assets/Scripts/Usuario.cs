@@ -1,4 +1,5 @@
-﻿class Usuario // Singleton
+﻿// Created by Luan Leme
+class Usuario // Singleton
 {
     private static Usuario _instancia;
     private string _nome, _senha;
