@@ -5,12 +5,10 @@ using Mono.Data.Sqlite;
 
 public class GetHighScores : MonoBehaviour
 {
-    private IDbConnection connection; // variável para fazer a conexão com o banco
-    private IDbCommand command; // variável que vai dar o comando para o banco
-    private IDataReader reader; // leitor
-    
-    private List<HighScores> highScores = new List<HighScores>();
-
+    private IDbConnection connection; // Para fazer a conexao com o banco
+    private IDbCommand command; // Vai dar o comando para o banco
+    private IDataReader reader; // Leitor
+    private HighScoreRepository highScores;
     public GameObject scorePrefab;
     public Transform scoreParent;
 
@@ -19,49 +17,56 @@ public class GetHighScores : MonoBehaviour
         ShowScores();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void GetScores()
     {
+        highScores = new HighScoreRepository();
 
-        highScores.Clear();
-
-        string connectionString = "URI=file:" + Application.dataPath + "/truck_learning.db";
+        string connectionString = 
+            "URI=file:" + Application.dataPath + "/truck_learning.db";
 
         connection = new SqliteConnection(connectionString);
         command = connection.CreateCommand();
         connection.Open();
 
-        string query = "SELECT * FROM usuario ORDER BY pontuacao DESC;";
+        const string query = "SELECT * FROM usuario ORDER BY pontuacao DESC;";
         command.CommandText = query;
         reader = command.ExecuteReader();
 
-        while (reader.Read())
-        {
-            highScores.Add(new HighScores(reader.GetInt32(0), reader.GetString(1), reader.GetInt32(3)));
+        while ( reader.Read() ) {
+            highScores.Add(
+                new HighScore(
+                    reader.GetInt32(0), reader.GetString(1), reader.GetInt32(3)
+                )
+            );
         }
+
+        reader.Close();
+        connection.Close();
     }
 
     private void ShowScores()
     {
+        int n = 1;
         GetScores();
-        for(int i= 0; i < highScores.Count; i++)
-        {
+
+        for(IIterator iter = highScores.CreateIterator(); iter.HasNext();) {
             GameObject tmpObject = Instantiate(scorePrefab);
 
-            HighScores tmpScore = highScores[i];
+            HighScore tmpScore = iter.Next();
 
-            tmpObject.GetComponent<HighScoreScript>().SetScore(tmpScore.Nome, tmpScore.Pontuacao.ToString(), "#" + (i + 1).ToString());
+            tmpObject.GetComponent<HighScoreScript>().SetScore(
+                tmpScore.Nome, tmpScore.Pontuacao.ToString(), "#" + (n++)
+            );
 
             tmpObject.transform.SetParent(scoreParent);
 
-            tmpObject.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
+            tmpObject.GetComponent<RectTransform>().localScale = new Vector3(
+                1, 1, 1
+            );
 
-            tmpObject.GetComponent<RectTransform>().localPosition = new Vector3(transform.position.x, transform.position.y, 0);
+            tmpObject.GetComponent<RectTransform>().localPosition = new Vector3(
+                transform.position.x, transform.position.y, 0
+            );
         }
     }
 }
