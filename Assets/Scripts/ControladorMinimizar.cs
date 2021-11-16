@@ -15,5 +15,4 @@ public class ControladorMinimizar : MonoBehaviour
     {
         ShowWindow(GetActiveWindow(), 2);
     }
-
 }

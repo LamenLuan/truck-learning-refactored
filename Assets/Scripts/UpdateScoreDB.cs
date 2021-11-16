@@ -1,18 +1,15 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.SceneManagement;
+﻿using UnityEngine;
 using System.Data;
 using Mono.Data.Sqlite;
 
 public class UpdateScoreDB : MonoBehaviour
 {
-    private IDbConnection connection; // variável para fazer a conexão com o banco
-    private IDbCommand command; // variável que vai dar o comando para o banco
-    private IDataReader reader; // leitor
-    public static UpdateScoreDB Instance; // variável que vai pegar o valor da nota e atualizar no banco
-
+    private IDbConnection connection; // Para fazer a conexão com o banco
+    private IDbCommand command; // Vai dar o comando para o banco
+    private IDataReader reader;
+    // Pegar o valor da nota e atualizar no banco
+    public static UpdateScoreDB Instance; 
+    
     void Start()
     {
         Instance = this;
