@@ -5,7 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class responder : MonoBehaviour
 {
-    private int idTema;
+    private int idTema, idPergunta, notaFinal;
+    private float acertos, questoes, media;
     public Text infoRespostas;
     public Text pergunta;
     public Text respostaA;
@@ -16,39 +17,24 @@ public class responder : MonoBehaviour
 
     public string[] perguntas; //armazena todas as perguntas
     public string[] corretas; //todas as respostas corretas
-    public string[] alternativaA; //todas as alternativas A
-    public string[] alternativaB; //todas as alternativas B
-    public string[] alternativaC; //todas as alternativas C
-    public string[] alternativaD; //todas as alternativas D
     private string[][] alternativas;
 
-    private int idPergunta, notaFinal;
-    private float acertos, questoes, media;
+    [SerializeField] private ButtonSubject[] buttonSubs;
 
     public void Start()
     {
         respostas = new Text[] {respostaA, respostaB, respostaC, respostaD};
-        alternativas = new string[][] {
-            alternativaA, alternativaB, alternativaC, alternativaD
-        };
+        alternativas = new string[buttonSubs.Length][];
+
+        for (int i = 0; i < alternativas.Length; i++)
+            alternativas[i] = buttonSubs[i].Answers;
 
         idTema = PlayerPrefs.GetInt("idTema");
-        idPergunta = 0;
         questoes = perguntas.Length;
         proximaPergunta();
     }
 
-    private void resetaCorBotoes()
-    {
-        Text[] respostas = {respostaA, respostaB, respostaC, respostaD};
-
-        for (int i = 0; i < respostas.Length; i++) {
-            Image btnImg = respostas[i].GetComponentInParent<Image>();
-            btnImg.color = new Color(1, 1, 1);
-        }
-    }
-
-    private void encontraRespostaCorreta(string[] incorreta)
+    public void encontraRespostaCorreta(string[] incorreta)
     {
         List<string[]> alternativasList = new List<string[]>(this.alternativas);
         List<Text> respostasList = new List<Text>(this.respostas);
@@ -67,43 +53,20 @@ public class responder : MonoBehaviour
         }
     }
 
-    public void verificaResposta(string alternativa)
+    public bool verificaResposta(string[] alternativa)
     {
-        Text resposta;
-        string[] alternativaEscolhida;
-
-        if (alternativa == "A") {
-            alternativaEscolhida = alternativaA;
-            resposta = respostaA;
-        } else if (alternativa == "B") {
-            alternativaEscolhida = alternativaB;
-            resposta = respostaB;
-        } else if (alternativa == "C") {
-            alternativaEscolhida = alternativaC;
-            resposta = respostaC;
-        } else {
-            alternativaEscolhida = alternativaD;
-            resposta = respostaD;
-        }
-
-        if(alternativaEscolhida[idPergunta] == corretas[idPergunta]) {
-            acertos++;
-            AudioManager.instance.SonsFXToca(3);
-            resposta.GetComponentInParent<Image>().color = new Color(0, 1, 0);
-
-        } else {
-            AudioManager.instance.SonsFXToca(4);
-            resposta.GetComponentInParent<Image>().color = new Color(1, 0, 0);
-            encontraRespostaCorreta(alternativaEscolhida);
-        }
-
-        idPergunta++;
         Invoke("proximaPergunta", 1.5f);
+
+        // Id da pergunta e incrementado para ir para a proxima
+        if( corretas[idPergunta].Equals(alternativa[idPergunta++]) ) {
+            acertos++;
+            return true;
+        }
+        return false;
     }
 
     void proximaPergunta()
     {
-        resetaCorBotoes();
         if (idPergunta < questoes) {
             pergunta.text = perguntas[idPergunta];
             for (int i = 0; i < respostas.Length; i++) {
