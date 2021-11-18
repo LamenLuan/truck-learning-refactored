@@ -14,15 +14,14 @@ public class responder : MonoBehaviour
     public Text respostaC;
     public Text respostaD;
     private Text[] respostas;
-
     public string[] perguntas; //armazena todas as perguntas
     public string[] corretas; //todas as respostas corretas
     private string[][] alternativas;
-
     [SerializeField] private ButtonSubject[] buttonSubs;
 
     public void Start()
     {
+        idPergunta = -1;
         respostas = new Text[] {respostaA, respostaB, respostaC, respostaD};
         alternativas = new string[buttonSubs.Length][];
 
@@ -45,7 +44,7 @@ public class responder : MonoBehaviour
 
         for (int i = 0; i < alternativasList.Count; i++)
         {
-            var alternativa = alternativas[i];
+            var alternativa = alternativasList[i];
             if(alternativa[idPergunta] == corretas[idPergunta]) {
                 Image btnImg = respostasList[i].GetComponentInParent<Image>();
                 btnImg.color = new Color(0, 1, 0);
@@ -55,18 +54,29 @@ public class responder : MonoBehaviour
 
     public bool verificaResposta(string[] alternativa)
     {
+        limpaBotoes();
         Invoke("proximaPergunta", 1.5f);
 
         // Id da pergunta e incrementado para ir para a proxima
-        if( corretas[idPergunta].Equals(alternativa[idPergunta++]) ) {
+        if( corretas[idPergunta].Equals(alternativa[idPergunta]) ) {
             acertos++;
             return true;
         }
         return false;
     }
 
-    void proximaPergunta()
+    private void guardaDadosPergunta()
     {
+        PlayerPrefs.SetInt("notafinal" + idTema.ToString(), notaFinal);
+        PlayerPrefs.SetInt("acertos" + idTema.ToString(), (int)acertos);
+        PlayerPrefs.SetInt("nota", notaFinal);
+        TXT.Instance.SalvaNota();
+        UpdateScoreDB.Instance.AtualizaPontuacao();
+    }
+
+    private void proximaPergunta()
+    {
+        idPergunta++;
         if (idPergunta < questoes) {
             pergunta.text = perguntas[idPergunta];
             for (int i = 0; i < respostas.Length; i++) {
@@ -75,15 +85,11 @@ public class responder : MonoBehaviour
             }
             infoRespostas.text = "Respondendo " + (idPergunta + 1) + " de " +
                 questoes.ToString() + " perguntas.";
-        } else {
+        }
+        else {
             media = 10 * (acertos / questoes); // Calcula a media com base no %
             notaFinal = Mathf.RoundToInt(media); // Arredonda para o próximo int
-
-            PlayerPrefs.SetInt("notafinal" + idTema.ToString(), notaFinal);
-            PlayerPrefs.SetInt("acertos" + idTema.ToString(), (int)acertos);
-            PlayerPrefs.SetInt("nota", notaFinal);
-            TXT.Instance.SalvaNota();
-            UpdateScoreDB.Instance.AtualizaPontuacao();
+            guardaDadosPergunta();
 
             if (media > 6) {
                 Usuario.Instancia.Nivel++;
@@ -94,4 +100,9 @@ public class responder : MonoBehaviour
         }
     }
 
+    private void limpaBotoes()
+    {
+        for (int i = 0; i < buttonSubs.Length; i++)
+            buttonSubs[i].Invoke("DischangeColor", 1.5f);
+    }
 }

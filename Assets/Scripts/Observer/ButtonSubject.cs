@@ -20,8 +20,7 @@ public class ButtonSubject : MonoBehaviour, ISubject  // Concrete Subject
     {
         _observers = new List<IObserver>();
         _btnImage = GetComponentInParent<Image>();
-        Attach(ButtonColorObserver.Instancia);
-        Attach(ButtonSoundObserver.Instancia);
+        Attach(ButtonObserver.Instancia);
     }
 
     public void Attach(IObserver observer)
@@ -47,12 +46,12 @@ public class ButtonSubject : MonoBehaviour, ISubject  // Concrete Subject
 
     public void ChangeColor()
     {
-        if( _answerController.verificaResposta(Answers) )
+        if( _answerController.verificaResposta(_answers) )
             _colorState = BtnColor.Green;
-        else 
+        else {
             _colorState = BtnColor.Red;
-
+            _answerController.encontraRespostaCorreta(_answers);
+        }
         Notify();
-        Invoke("DischangeColor", 1.5f);
     }
 }
