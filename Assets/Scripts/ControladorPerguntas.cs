@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class responder : MonoBehaviour
+public class ControladorPerguntas : MonoBehaviour
 {
     private int idTema, idPergunta, notaFinal;
     private float acertos, questoes, media;

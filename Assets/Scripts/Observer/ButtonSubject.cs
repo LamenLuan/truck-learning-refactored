@@ -8,7 +8,7 @@ public class ButtonSubject : MonoBehaviour, ISubject  // Concrete Subject
     private Image _btnImage;
     private List<IObserver> _observers;
     [SerializeField] private string[] _answers;
-    [SerializeField] private responder _answerController;
+    [SerializeField] private ControladorPerguntas _answerController;
 
     public Image BtnImage { get => _btnImage; set => _btnImage = value; }
     internal BtnColor ColorState {
