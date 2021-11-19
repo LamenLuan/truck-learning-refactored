@@ -5,7 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class responder : MonoBehaviour
 {
-    private int idTema;
+    private int idTema, idPergunta, notaFinal;
+    private float acertos, questoes, media;
     public Text infoRespostas;
     public Text pergunta;
     public Text respostaA;
@@ -13,42 +14,26 @@ public class responder : MonoBehaviour
     public Text respostaC;
     public Text respostaD;
     private Text[] respostas;
-
     public string[] perguntas; //armazena todas as perguntas
     public string[] corretas; //todas as respostas corretas
-    public string[] alternativaA; //todas as alternativas A
-    public string[] alternativaB; //todas as alternativas B
-    public string[] alternativaC; //todas as alternativas C
-    public string[] alternativaD; //todas as alternativas D
     private string[][] alternativas;
-
-    private int idPergunta, notaFinal;
-    private float acertos, questoes, media;
+    [SerializeField] private ButtonSubject[] buttonSubs;
 
     public void Start()
     {
+        idPergunta = -1;
         respostas = new Text[] {respostaA, respostaB, respostaC, respostaD};
-        alternativas = new string[][] {
-            alternativaA, alternativaB, alternativaC, alternativaD
-        };
+        alternativas = new string[buttonSubs.Length][];
+
+        for (int i = 0; i < alternativas.Length; i++)
+            alternativas[i] = buttonSubs[i].Answers;
 
         idTema = PlayerPrefs.GetInt("idTema");
-        idPergunta = 0;
         questoes = perguntas.Length;
         proximaPergunta();
     }
 
-    private void resetaCorBotoes()
-    {
-        Text[] respostas = {respostaA, respostaB, respostaC, respostaD};
-
-        for (int i = 0; i < respostas.Length; i++) {
-            Image btnImg = respostas[i].GetComponentInParent<Image>();
-            btnImg.color = new Color(1, 1, 1);
-        }
-    }
-
-    private void encontraRespostaCorreta(string[] incorreta)
+    public void encontraRespostaCorreta(string[] incorreta)
     {
         List<string[]> alternativasList = new List<string[]>(this.alternativas);
         List<Text> respostasList = new List<Text>(this.respostas);
@@ -59,7 +44,7 @@ public class responder : MonoBehaviour
 
         for (int i = 0; i < alternativasList.Count; i++)
         {
-            var alternativa = alternativas[i];
+            var alternativa = alternativasList[i];
             if(alternativa[idPergunta] == corretas[idPergunta]) {
                 Image btnImg = respostasList[i].GetComponentInParent<Image>();
                 btnImg.color = new Color(0, 1, 0);
@@ -67,43 +52,31 @@ public class responder : MonoBehaviour
         }
     }
 
-    public void verificaResposta(string alternativa)
+    public bool verificaResposta(string[] alternativa)
     {
-        Text resposta;
-        string[] alternativaEscolhida;
-
-        if (alternativa == "A") {
-            alternativaEscolhida = alternativaA;
-            resposta = respostaA;
-        } else if (alternativa == "B") {
-            alternativaEscolhida = alternativaB;
-            resposta = respostaB;
-        } else if (alternativa == "C") {
-            alternativaEscolhida = alternativaC;
-            resposta = respostaC;
-        } else {
-            alternativaEscolhida = alternativaD;
-            resposta = respostaD;
-        }
-
-        if(alternativaEscolhida[idPergunta] == corretas[idPergunta]) {
-            acertos++;
-            AudioManager.instance.SonsFXToca(3);
-            resposta.GetComponentInParent<Image>().color = new Color(0, 1, 0);
-
-        } else {
-            AudioManager.instance.SonsFXToca(4);
-            resposta.GetComponentInParent<Image>().color = new Color(1, 0, 0);
-            encontraRespostaCorreta(alternativaEscolhida);
-        }
-
-        idPergunta++;
+        limpaBotoes();
         Invoke("proximaPergunta", 1.5f);
+
+        // Id da pergunta e incrementado para ir para a proxima
+        if( corretas[idPergunta].Equals(alternativa[idPergunta]) ) {
+            acertos++;
+            return true;
+        }
+        return false;
     }
 
-    void proximaPergunta()
+    private void guardaDadosPergunta()
     {
-        resetaCorBotoes();
+        PlayerPrefs.SetInt("notafinal" + idTema.ToString(), notaFinal);
+        PlayerPrefs.SetInt("acertos" + idTema.ToString(), (int)acertos);
+        PlayerPrefs.SetInt("nota", notaFinal);
+        TXT.Instance.SalvaNota();
+        UpdateScoreDB.Instance.AtualizaPontuacao();
+    }
+
+    private void proximaPergunta()
+    {
+        idPergunta++;
         if (idPergunta < questoes) {
             pergunta.text = perguntas[idPergunta];
             for (int i = 0; i < respostas.Length; i++) {
@@ -112,15 +85,11 @@ public class responder : MonoBehaviour
             }
             infoRespostas.text = "Respondendo " + (idPergunta + 1) + " de " +
                 questoes.ToString() + " perguntas.";
-        } else {
+        }
+        else {
             media = 10 * (acertos / questoes); // Calcula a media com base no %
             notaFinal = Mathf.RoundToInt(media); // Arredonda para o próximo int
-
-            PlayerPrefs.SetInt("notafinal" + idTema.ToString(), notaFinal);
-            PlayerPrefs.SetInt("acertos" + idTema.ToString(), (int)acertos);
-            PlayerPrefs.SetInt("nota", notaFinal);
-            TXT.Instance.SalvaNota();
-            UpdateScoreDB.Instance.AtualizaPontuacao();
+            guardaDadosPergunta();
 
             if (media > 6) {
                 Usuario.Instancia.Nivel++;
@@ -131,4 +100,9 @@ public class responder : MonoBehaviour
         }
     }
 
+    private void limpaBotoes()
+    {
+        for (int i = 0; i < buttonSubs.Length; i++)
+            buttonSubs[i].Invoke("DischangeColor", 1.5f);
+    }
 }
