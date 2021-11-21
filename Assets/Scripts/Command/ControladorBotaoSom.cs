@@ -4,12 +4,12 @@ class ControladorBotaoSom : MonoBehaviour // Client
 {
     [SerializeField] private BGFundo _receiver;
 
-    public void alterarEstado()
+    public void AlterarEstado()
     {
         if(_receiver == null) return;
 
-        Invoker invoker = new Invoker();
-        invoker.Command = new LigaDesligaMusica(_receiver);
+        ICommand command = new LigaDesligaMusica(_receiver);
+        Invoker invoker = new Invoker(command);
         invoker.ExecuteCommand();
     }
 }
