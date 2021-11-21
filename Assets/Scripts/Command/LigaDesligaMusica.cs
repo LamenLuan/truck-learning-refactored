@@ -1,6 +1,6 @@
 class LigaDesligaMusica : ICommand // Concrete Command
 {
-    private BGFundo _receiver;
+    public BGFundo _receiver;
 
     public LigaDesligaMusica(BGFundo receiver)
     {
