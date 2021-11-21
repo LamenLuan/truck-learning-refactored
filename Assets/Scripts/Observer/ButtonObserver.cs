@@ -4,7 +4,6 @@ using UnityEngine.UI;
 public class ButtonObserver : IObserver // Concrete Subject
 {
     private static ButtonObserver _instancia;
-    private ButtonSubject btnSub;
 
     public static ButtonObserver Instancia {
         get {
