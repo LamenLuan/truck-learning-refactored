@@ -6,7 +6,7 @@ public class ButtonSubject : MonoBehaviour, ISubject  // Concrete Subject
 {
     private BtnColor _colorState = BtnColor.Normal;
     private Image _btnImage;
-    private List<IObserver> _observers;
+    public List<IObserver> _observers;
     [SerializeField] private string[] _answers;
     [SerializeField] private ControladorPerguntas _answerController;
 
@@ -20,7 +20,7 @@ public class ButtonSubject : MonoBehaviour, ISubject  // Concrete Subject
     {
         _observers = new List<IObserver>();
         _btnImage = GetComponentInParent<Image>();
-        Attach(ButtonObserver.Instancia);
+        Attach( new ButtonObserver(this) );
     }
 
     public void Attach(IObserver observer)
@@ -35,7 +35,7 @@ public class ButtonSubject : MonoBehaviour, ISubject  // Concrete Subject
 
     public void Notify()
     {
-        _observers.ForEach( observer => observer.Update(this) );
+        _observers.ForEach( observer => observer.Update() );
     }
 
     public void DischangeColor()

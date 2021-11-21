@@ -1,4 +1,4 @@
 public interface IObserver // Observer
 {
-    void Update(ISubject subject);
+    void Update();
 }
