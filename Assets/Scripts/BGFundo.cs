@@ -6,24 +6,13 @@ public class BGFundo : MonoBehaviour
 
     void Start()
     {
-        if (AudioManager.instance.musicaBG.isPlaying) {
-            botaooff.SetActive(false);
-            botaoon.SetActive(true);
-
-        } else {
-            botaooff.SetActive(true);
-            botaoon.SetActive(false);
-        }
+        bool isPlaying = AudioManager.instance.musicaBG.isPlaying;
+        botaooff.SetActive(!isPlaying);
+        botaoon.SetActive(isPlaying);
     }
 
-    public void PauseSound()
+    public void AlteraEstadoFXMusica()
     {
        AudioManager.instance.SonsBGToca(botaooff, botaoon);
     }
-
-    public void Destruir()
-    {
-        AudioManager.instance.Destruir();
-    }
-
 }
