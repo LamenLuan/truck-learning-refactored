@@ -42,7 +42,6 @@ public class ControladorPerguntas : MonoBehaviour
             return true;
         }
         _historicoErros.Mementos.Add( _originator.CreateMemento() );
-        print("Adicionando memento de id:" + idPergunta);
         return false;
     }
 
@@ -70,7 +69,6 @@ public class ControladorPerguntas : MonoBehaviour
         }
         else {
             resolvendoErros = true;
-            print("Modo resolvendo erros ativado");
             proximoErro();
         }
     }
@@ -89,7 +87,6 @@ public class ControladorPerguntas : MonoBehaviour
             infoRespostas.text = "Resolva os " +
                 _historicoErros.Mementos.Count + " erros para avançar";
 
-            print("Removendo memento de id:" + idPergunta);
             _historicoErros.Mementos.RemoveAt(0);
         }
         else {
