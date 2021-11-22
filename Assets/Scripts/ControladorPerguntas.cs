@@ -1,29 +1,27 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class ControladorPerguntas : MonoBehaviour
 {
-    private int idTema, idPergunta, notaFinal;
+    private bool resolvendoErros = false;
+    private int idTema, notaFinal;
     private float acertos, questoes, media;
     public Text infoRespostas;
-    public Text pergunta;
-    public Text respostaA;
-    public Text respostaB;
-    public Text respostaC;
-    public Text respostaD;
+    public Text pergunta, respostaA,  respostaB,  respostaC,  respostaD;
     private Text[] respostas;
-    public string[] perguntas; //armazena todas as perguntas
-    public string[] corretas; //todas as respostas corretas
+    public string[] perguntas, corretas; //armazena todas as perguntas
     private string[][] alternativas;
     [SerializeField] private ButtonSubject[] buttonSubs;
+    private HistoricoErros _historicoErros;
+    private Originator _originator;
 
     public void Start()
     {
-        idPergunta = -1;
         respostas = new Text[] {respostaA, respostaB, respostaC, respostaD};
         alternativas = new string[buttonSubs.Length][];
+        _historicoErros = new HistoricoErros();
+        _originator = new Originator();
 
         for (int i = 0; i < alternativas.Length; i++)
             alternativas[i] = buttonSubs[i].Answers;
@@ -33,35 +31,18 @@ public class ControladorPerguntas : MonoBehaviour
         proximaPergunta();
     }
 
-    public void encontraRespostaCorreta(string[] incorreta)
-    {
-        List<string[]> alternativasList = new List<string[]>(this.alternativas);
-        List<Text> respostasList = new List<Text>(this.respostas);
-        
-        int index = alternativasList.IndexOf(incorreta);
-        alternativasList.RemoveAt(index);
-        respostasList.RemoveAt(index);
-
-        for (int i = 0; i < alternativasList.Count; i++)
-        {
-            var alternativa = alternativasList[i];
-            if(alternativa[idPergunta] == corretas[idPergunta]) {
-                Image btnImg = respostasList[i].GetComponentInParent<Image>();
-                btnImg.color = new Color(0, 1, 0);
-            }
-        }
-    }
-
     public bool verificaResposta(string[] alternativa)
     {
-        limpaBotoes();
-        Invoke("proximaPergunta", 1.5f);
+        int idPergunta = _originator.Index;
+        Invoke(resolvendoErros ? "proximoErro" : "proximaPergunta", 1.5f);
 
         // Id da pergunta e incrementado para ir para a proxima
         if( corretas[idPergunta].Equals(alternativa[idPergunta]) ) {
-            acertos++;
+            if(!resolvendoErros) acertos++;
             return true;
         }
+        _historicoErros.Mementos.Add( _originator.CreateMemento() );
+        print("Adicionando memento de id:" + idPergunta);
         return false;
     }
 
@@ -76,7 +57,8 @@ public class ControladorPerguntas : MonoBehaviour
 
     private void proximaPergunta()
     {
-        idPergunta++;
+        int idPergunta = ++_originator.Index;
+
         if (idPergunta < questoes) {
             pergunta.text = perguntas[idPergunta];
             for (int i = 0; i < respostas.Length; i++) {
@@ -84,7 +66,31 @@ public class ControladorPerguntas : MonoBehaviour
                 respostas[i].text = perguntasAux[idPergunta];
             }
             infoRespostas.text = "Respondendo " + (idPergunta + 1) + " de " +
-                questoes.ToString() + " perguntas.";
+                questoes.ToString() + " perguntas";
+        }
+        else {
+            resolvendoErros = true;
+            print("Modo resolvendo erros ativado");
+            proximoErro();
+        }
+    }
+
+    private void proximoErro()
+    {
+        if(_historicoErros.Mementos.Count > 0) {
+            _originator.SetMemento(_historicoErros.Mementos[0]);
+            int idPergunta = _originator.Index;
+
+            pergunta.text = perguntas[idPergunta];
+            for (int i = 0; i < respostas.Length; i++) {
+                string[] perguntasAux = alternativas[i];
+                respostas[i].text = perguntasAux[idPergunta];
+            }
+            infoRespostas.text = "Resolva os " +
+                _historicoErros.Mementos.Count + " erros para avançar";
+
+            print("Removendo memento de id:" + idPergunta);
+            _historicoErros.Mementos.RemoveAt(0);
         }
         else {
             media = 10 * (acertos / questoes); // Calcula a media com base no %
@@ -98,11 +104,5 @@ public class ControladorPerguntas : MonoBehaviour
             }
             else SceneManager.LoadScene("FAIL");
         }
-    }
-
-    private void limpaBotoes()
-    {
-        for (int i = 0; i < buttonSubs.Length; i++)
-            buttonSubs[i].Invoke("DischangeColor", 1.5f);
     }
 }
