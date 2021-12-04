@@ -5,57 +5,66 @@
 public class Frases : MonoBehaviour
 {
     public static Frases Instance;
-    public AudioClip[] listaClips;
-    public AudioSource audioSource;
-    public float tempo;
-    public bool popupAtivado;
-    public bool mudo;
-    private int quantNiveis;
-         
+    private int _quantNiveis;
+    private bool _mudo;
+    private float _tempo;
+    private bool _popupAtivado;
+    private AudioSource _audioSource;
+    [SerializeField] private AudioClip[] _listaClips;
+
+    public bool Mudo { get => _mudo; set => _mudo = value; }
+    public float Tempo { get => _tempo; set => _tempo = value; }
+    public bool PopupAtivado {
+        get => _popupAtivado; set => _popupAtivado = value;
+    }
+    public AudioSource AudioSource {
+        get => _audioSource; set => _audioSource = value;
+    }
+
     void Start()
     {
-        audioSource = GetComponent<AudioSource>();
+        _audioSource = GetComponent<AudioSource>();
         Instance = this;
-        quantNiveis = ImgRand.Instance.listaSprites.Length;
+        _quantNiveis = ImgRand.Instance.listaSprites.Length;
     }
     
     void Update()
     {
-        tempo += Time.deltaTime;
+        _tempo += Time.deltaTime;
 
-        for(int nivel = 0; nivel < quantNiveis; nivel++)
+        for(int nivel = 0; nivel < _quantNiveis; nivel++)
         {
-            if( nivelAtual(nivel) ) {
-                verificaTempo( (int) tempo, nivel );
+            if( NivelAtual(nivel) ) {
+                VerificaTempo( (int) _tempo, nivel );
                 break;
             }
         }
     }
 
-    private bool nivelAtual(int i)
+    private bool NivelAtual(int i)
     {
-        return ImgRand.Instance.indexIMG == i && popupAtivado;
+        return ImgRand.Instance.indexIMG == i && _popupAtivado;
     }
 
-    private void tocaClip(int indiceClip)
+    private void TocaClip(int indiceClip)
     {
-        audioSource.clip = listaClips[indiceClip];
-        if(!mudo) audioSource.Play();
+        _audioSource.clip = _listaClips[indiceClip];
+        if(!_mudo) _audioSource.Play();
     }
 
-    private void verificaTempo(int intTempo, int nivel)
+    private void VerificaTempo(int intTempo, int nivel)
     {
         for(int i = 0; i < 8; i++)
         {
             // Vendo se tempo == [1, 7, 13, ..., 43]
             if(intTempo == i * 6 + 1) {
                 int clipAtual = nivel * 8 + i;
-                tocaClip(clipAtual);
+                TocaClip(clipAtual);
                 DicasControl.Instance.setaFraseBalao(clipAtual);
                 break;
             }
             else if(intTempo >= 49) {
-                tempo = 0;
+                _tempo = 0;
                 break;
             }
         }
