@@ -59,7 +59,7 @@ public class AudioManager : MonoBehaviour
             if(Frases.Instance == true)
             {
                 Frases.Instance.mudo = true;
-                Frases.Instance.tocar.Stop();
+                Frases.Instance.audioSource.Stop();
             }
 
             
@@ -74,7 +74,7 @@ public class AudioManager : MonoBehaviour
             if (Frases.Instance == true)
             {
                 Frases.Instance.mudo = false;
-                Frases.Instance.tocar.UnPause();
+                Frases.Instance.audioSource.UnPause();
             }
 
             botaooff.SetActive(false);
