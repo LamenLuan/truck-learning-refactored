@@ -1,23 +1,14 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class NuvemScroll : MonoBehaviour
 {
-    public float vel = 0.05f;
-    public Renderer quad;
-
-
-    void Start()
-    {
+    [SerializeField] private float _velocidade = 0.05f;
+    [SerializeField] private Renderer _renderer;
     
-    }
-
-    // Update is called once per frame
-    void Update()
+    void Update() // Update is called once per frame
     {
-        Vector2 offset = new Vector2(vel * Time.deltaTime, 0);
-        quad.material.mainTextureOffset -= offset;
+        Vector2 offset = new Vector2(_velocidade * Time.deltaTime, 0);
+        _renderer.material.mainTextureOffset -= offset;
     }
 
 }
