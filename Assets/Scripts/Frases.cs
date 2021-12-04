@@ -1,9 +1,12 @@
 ﻿using UnityEngine;
 
 // Responsável em gerar os balões de dicas que aparece encima do personagem,
-// bem como tocar suas frases em áudio a cada 6 segundos;
+// bem como tocar suas frases em áudio a cada INTERVALO segundos;
 public class Frases : MonoBehaviour
 {
+    const int PERGUNTAS_POR_QUESTAO = 8;
+    const int INTERVALO = 6;
+    
     public static Frases Instance;
     private int _quantNiveis;
     private bool _mudo;
@@ -52,18 +55,23 @@ public class Frases : MonoBehaviour
         if(!_mudo) _audioSource.Play();
     }
 
+    private bool HoraResetTempo(int tempo)
+    {
+        return tempo >= PERGUNTAS_POR_QUESTAO * INTERVALO + 1;
+    }
+
     private void VerificaTempo(int intTempo, int nivel)
     {
-        for(int i = 0; i < 8; i++)
+        for(int i = 0; i < PERGUNTAS_POR_QUESTAO; i++)
         {
             // Vendo se tempo == [1, 7, 13, ..., 43]
-            if(intTempo == i * 6 + 1) {
-                int clipAtual = nivel * 8 + i;
+            if(intTempo == i * INTERVALO + 1) {
+                int clipAtual = nivel * PERGUNTAS_POR_QUESTAO + i;
                 TocaClip(clipAtual);
                 DicasControl.Instance.setaFraseBalao(clipAtual);
                 break;
             }
-            else if(intTempo >= 49) {
+            else if( HoraResetTempo(intTempo) ) {
                 _tempo = 0;
                 break;
             }
