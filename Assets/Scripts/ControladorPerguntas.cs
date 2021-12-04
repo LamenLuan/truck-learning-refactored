@@ -4,48 +4,48 @@ using UnityEngine.SceneManagement;
 
 public class ControladorPerguntas : MonoBehaviour
 {
-    private bool resolvendoErros = false;
+    private bool resolvendoErros;
     private int idTema, notaFinal;
     private float acertos, questoes, media;
-    public Text infoRespostas;
-    public Text pergunta, respostaA,  respostaB,  respostaC,  respostaD;
-    private Text[] respostas;
-    public string[] perguntas, corretas; //armazena todas as perguntas
+    [SerializeField] private string[] perguntas, corretas;
     private string[][] alternativas;
+    [SerializeField] private Text infoRespostas, pergunta, respostaA, respostaB,
+        respostaC, respostaD;
+    private Text[] respostas;
     [SerializeField] private ButtonSubject[] buttonSubs;
-    private HistoricoErros _historicoErros;
-    private Originator _originator;
+    private HistoricoErros historicoErros;
+    private Originator originator;
 
     public void Start()
     {
         respostas = new Text[] {respostaA, respostaB, respostaC, respostaD};
         alternativas = new string[buttonSubs.Length][];
-        _historicoErros = new HistoricoErros();
-        _originator = new Originator();
+        historicoErros = new HistoricoErros();
+        originator = new Originator();
 
         for (int i = 0; i < alternativas.Length; i++)
             alternativas[i] = buttonSubs[i].Answers;
 
         idTema = PlayerPrefs.GetInt("idTema");
         questoes = perguntas.Length;
-        proximaPergunta();
+        ProximaPergunta();
     }
 
-    public bool verificaResposta(string[] alternativa)
+    public bool VerificaResposta(string[] alternativa)
     {
-        int idPergunta = _originator.Index;
-        Invoke(resolvendoErros ? "proximoErro" : "proximaPergunta", 1.5f);
+        int idPergunta = originator.Index;
+        Invoke(resolvendoErros ? "ProximoErro" : "ProximaPergunta", 1.5f);
 
         // Id da pergunta e incrementado para ir para a proxima
         if( corretas[idPergunta].Equals(alternativa[idPergunta]) ) {
             if(!resolvendoErros) acertos++;
             return true;
         }
-        _historicoErros.Mementos.Add( _originator.CreateMemento() );
+        historicoErros.Mementos.Add( originator.CreateMemento() );
         return false;
     }
 
-    private void guardaDadosPergunta()
+    private void GuardaDadosPergunta()
     {
         PlayerPrefs.SetInt("notafinal" + idTema.ToString(), notaFinal);
         PlayerPrefs.SetInt("acertos" + idTema.ToString(), (int)acertos);
@@ -54,45 +54,46 @@ public class ControladorPerguntas : MonoBehaviour
         UpdateScoreDB.Instance.AtualizaPontuacao();
     }
 
-    private void proximaPergunta()
+    private void PreencheTextosPergunta(int idPergunta)
     {
-        int idPergunta = ++_originator.Index;
+        pergunta.text = perguntas[idPergunta];
+        for (int i = 0; i < respostas.Length; i++) {
+            string[] perguntasAux = alternativas[i];
+            respostas[i].text = perguntasAux[idPergunta];
+        }
+    }
+
+    private void ProximaPergunta() // Invocada por VerificaResposta()
+    {
+        int idPergunta = ++originator.Index;
 
         if (idPergunta < questoes) {
-            pergunta.text = perguntas[idPergunta];
-            for (int i = 0; i < respostas.Length; i++) {
-                string[] perguntasAux = alternativas[i];
-                respostas[i].text = perguntasAux[idPergunta];
-            }
+            PreencheTextosPergunta(idPergunta);
             infoRespostas.text = "Respondendo " + (idPergunta + 1) + " de " +
                 questoes.ToString() + " perguntas";
         }
         else {
             resolvendoErros = true;
-            proximoErro();
+            ProximoErro();
         }
     }
 
-    private void proximoErro()
+    private void ProximoErro() // Invocada por VerificaResposta()
     {
-        if(_historicoErros.Mementos.Count > 0) {
-            _originator.SetMemento(_historicoErros.Mementos[0]);
-            int idPergunta = _originator.Index;
-
-            pergunta.text = perguntas[idPergunta];
-            for (int i = 0; i < respostas.Length; i++) {
-                string[] perguntasAux = alternativas[i];
-                respostas[i].text = perguntasAux[idPergunta];
-            }
+        if(historicoErros.Mementos.Count > 0) {
+            originator.SetMemento(historicoErros.Mementos[0]);
+            int idPergunta = originator.Index;
+            
+            PreencheTextosPergunta(idPergunta);
             infoRespostas.text = "Resolva os " +
-                _historicoErros.Mementos.Count + " erros para avançar";
+                historicoErros.Mementos.Count + " erros para avançar";
 
-            _historicoErros.Mementos.RemoveAt(0);
+            historicoErros.Mementos.RemoveAt(0);
         }
         else {
             media = 10 * (acertos / questoes); // Calcula a media com base no %
             notaFinal = Mathf.RoundToInt(media); // Arredonda para o próximo int
-            guardaDadosPergunta();
+            GuardaDadosPergunta();
 
             if (media > 6) {
                 Usuario.Instancia.Nivel++;
