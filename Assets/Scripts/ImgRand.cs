@@ -1,32 +1,26 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.Rendering;
+﻿using UnityEngine;
 
 public class ImgRand : MonoBehaviour
 {
-    public Sprite[] listaSprites = new Sprite[9];
+    private int indexIMG;
+    private Sprite[] _listaSprites = new Sprite[9];
+    private SpriteRenderer _spriteRenderer;
     public static ImgRand Instance;
-    SpriteRenderer spriteRenderer;
-    public int indexIMG;
-    
+
+    public int IndexIMG { get => indexIMG; set => indexIMG = value; }
+    public Sprite[] ListaSprites {
+        get => _listaSprites; set => _listaSprites = value;
+    }
+
     void Awake()
     {
         Instance = this;
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        _spriteRenderer = GetComponent<SpriteRenderer>();
     }
     
     void Start()
     {
-      indexIMG = Usuario.Instancia.Nivel; //serve apenas para informar qual tabuleiro vai ser apresentado no mapa e também as frases
-      spriteRenderer.sprite = listaSprites[indexIMG];
-    }
-
-    void Update()
-    {
-        // Debug.Log(index);
-       //renderer.sprite = listaSprites[indexIMG]; //renderiza o tabuleiro certo
-       //nao sei pq o renderer.sprite está no update, vou deixar ele no awake/start, pq funciona também e eu acho mais coerente. Caso dê alguem pau, posso tentar ativar o renderer.sprite daqui e desativar do awake/start
-       
+        indexIMG = Usuario.Instancia.Nivel;
+        _spriteRenderer.sprite = _listaSprites[indexIMG];
     }
 }

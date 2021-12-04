@@ -28,7 +28,7 @@ public class Frases : MonoBehaviour
     {
         _audioSource = GetComponent<AudioSource>();
         Instance = this;
-        _quantNiveis = ImgRand.Instance.listaSprites.Length;
+        _quantNiveis = ImgRand.Instance.ListaSprites.Length;
     }
     
     void Update()
@@ -46,7 +46,7 @@ public class Frases : MonoBehaviour
 
     private bool NivelAtual(int i)
     {
-        return ImgRand.Instance.indexIMG == i && _popupAtivado;
+        return ImgRand.Instance.IndexIMG == i && _popupAtivado;
     }
 
     private void TocaClip(int indiceClip)
