@@ -3,7 +3,7 @@
 public class ImgRand : MonoBehaviour
 {
     private int indexIMG;
-    private Sprite[] _listaSprites = new Sprite[9];
+    [SerializeField] private Sprite[] _listaSprites;
     private SpriteRenderer _spriteRenderer;
     public static ImgRand Instance;
 

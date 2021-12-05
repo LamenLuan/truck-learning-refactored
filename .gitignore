@@ -101,3 +101,4 @@ crashlytics-build.properties
 .sonarqube/bin/SonarScanner.MSBuild.Common.dll
 .vscode/settings.json
 Assets/Log.txt
+.sonarqube

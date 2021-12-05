@@ -79,4 +79,12 @@ public class UpdateScoreDB : MonoBehaviour
             " WHERE nome = '" + Usuario.Instancia.Nome + "';"
         );
     }
+
+    public void limpaDados() // Invocada pela CERTIFICACAOFINAL
+    {
+        ExecutaQuery(
+            "UPDATE usuario SET nivel = 0 WHERE nome = '" +
+            Usuario.Instancia.Nome + "';"
+        );
+    }
 }

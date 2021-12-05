@@ -47,8 +47,8 @@ public class ButtonSubject : MonoBehaviour, ISubject  // Concrete Subject
     public void ChangeColor()
     {
         _colorState = _answerController.VerificaResposta(_answers)
-            ? _colorState = BtnColor.Green
-            : _colorState = BtnColor.Red;
+            ? BtnColor.Green
+            : BtnColor.Red;
 
         Invoke("DischangeColor", 1.5f);
         Notify();

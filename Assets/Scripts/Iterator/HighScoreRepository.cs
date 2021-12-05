@@ -3,7 +3,7 @@ using System.Collections.Generic;
 // Created by Luan Leme
 public class HighScoreRepository : IHighScoreAggregate // Concrete Aggregate
 {
-    private List<HighScore> highScores;
+    private readonly List<HighScore> highScores;
 
     public HighScoreRepository()
     {
@@ -22,7 +22,7 @@ public class HighScoreRepository : IHighScoreAggregate // Concrete Aggregate
     private class HighScoreIterator : IIterator // Concrete Iterator
     {
         private int index;
-        private List<HighScore> highScores;
+        private readonly List<HighScore> highScores;
 
         public HighScoreIterator(List<HighScore> highScores)
         {

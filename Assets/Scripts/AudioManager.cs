@@ -1,20 +1,16 @@
 ﻿using UnityEngine;
 
 // ESSA CLASSE GERENCIA O AUDIO DO JOGO (FUNDO E EFEITOS ESPECIAIS)
-//   OBS: AS FRASES EM AUDIO SÃO GERENCIADAS POR OUTRA CLASSE.
+// OBS: AS FRASES EM AUDIO SÃO GERENCIADAS POR OUTRA CLASSE.
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager instance;
-    //musicas
+    // Musicas
     public AudioClip[] clips;
     public AudioSource musicaBG;
-  
-    //sonsFX
+    // SonsFX
     public AudioClip[] clipsFX;
     public AudioSource sonsFX;
-
-    //private bool mudo = false;
-   
     
     private void Awake()
     {

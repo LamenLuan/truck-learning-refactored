@@ -18,8 +18,6 @@ public class temaJogo : MonoBehaviour
     {
         int nivel = Usuario.Instancia.Nivel;
         PlayerPrefs.SetInt("idTema", nivel);
-        int notaF = PlayerPrefs.GetInt("notafinal" + nivel);
-        int acertos= PlayerPrefs.GetInt("acertos" + nivel);
         SceneManager.LoadScene("T" + nivel);
     }
 
