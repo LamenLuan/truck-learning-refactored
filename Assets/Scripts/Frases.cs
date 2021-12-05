@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 // Responsável em gerar os balões de dicas que aparece encima do personagem,
-// bem como tocar suas frases em áudio a cada INTERVALO segundos;
+// bem como tocar suas frases em áudio a cada intervalo de segundos;
 public class Frases : MonoBehaviour
 {
     const int PERGUNTAS_POR_QUESTAO = 8;
