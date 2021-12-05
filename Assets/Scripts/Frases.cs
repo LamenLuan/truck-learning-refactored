@@ -8,37 +8,28 @@ public class Frases : MonoBehaviour
     const int INTERVALO = 6;
     
     public static Frases Instance;
+    public bool Mudo { get; set; }
+    public bool PopupAtivado { get; set; }
     private int _quantNiveis;
-    private bool _mudo;
-    private float _tempo;
-    private bool _popupAtivado;
-    private AudioSource _audioSource;
+    public float Tempo { get; set; }
+    public AudioSource AudioSource { get; set; }
     [SerializeField] private AudioClip[] _listaClips;
-
-    public bool Mudo { get => _mudo; set => _mudo = value; }
-    public float Tempo { get => _tempo; set => _tempo = value; }
-    public bool PopupAtivado {
-        get => _popupAtivado; set => _popupAtivado = value;
-    }
-    public AudioSource AudioSource {
-        get => _audioSource; set => _audioSource = value;
-    }
 
     void Start()
     {
-        _audioSource = GetComponent<AudioSource>();
+        AudioSource = GetComponent<AudioSource>();
         Instance = this;
         _quantNiveis = ImgRand.Instance.ListaSprites.Length;
     }
     
     void Update()
     {
-        _tempo += Time.deltaTime;
+        Tempo += Time.deltaTime;
 
         for(int nivel = 0; nivel < _quantNiveis; nivel++)
         {
             if( NivelAtual(nivel) ) {
-                VerificaTempo( (int) _tempo, nivel );
+                VerificaTempo( (int) Tempo, nivel );
                 break;
             }
         }
@@ -46,13 +37,13 @@ public class Frases : MonoBehaviour
 
     private bool NivelAtual(int i)
     {
-        return ImgRand.Instance.IndexIMG == i && _popupAtivado;
+        return ImgRand.Instance.IndexIMG == i && PopupAtivado;
     }
 
     private void TocaClip(int indiceClip)
     {
-        _audioSource.clip = _listaClips[indiceClip];
-        if(!_mudo) _audioSource.Play();
+        AudioSource.clip = _listaClips[indiceClip];
+        if(!Mudo) AudioSource.Play();
     }
 
     private bool HoraResetTempo(int tempo)
@@ -72,7 +63,7 @@ public class Frases : MonoBehaviour
                 break;
             }
             else if( HoraResetTempo(intTempo) ) {
-                _tempo = 0;
+                Tempo = 0;
                 break;
             }
         }

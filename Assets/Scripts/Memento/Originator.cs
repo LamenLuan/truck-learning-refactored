@@ -1,15 +1,19 @@
 class Originator // Originator
 {
-    private int _index = -1;
-    public int Index { get => _index; set => _index = value; }
+    public int Index { get; set; }
+
+    public Originator()
+    {
+        Index = -1;
+    }
 
     public Memento CreateMemento()
     {
-        return new Memento(_index);
+        return new Memento(Index);
     }
 
     public void SetMemento(Memento memento)
     {
-        _index = memento.State;
+        Index = memento.State;
     }
 }

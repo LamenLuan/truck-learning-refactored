@@ -1,4 +1,4 @@
-enum BtnColor
+public enum BtnColor
 {
     Normal,
     Green,

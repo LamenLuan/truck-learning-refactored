@@ -2,15 +2,10 @@
 class Usuario // Singleton
 {
     private static Usuario _instancia;
-    private string _nome, _senha;
-    private int _pontuacao, _nivel;
-
-    private Usuario() {
-        _nome = "";
-        _senha = "";
-        _pontuacao = -1;
-        _nivel = -1;
-    }
+    public string Nome { get; set; }
+    public string Senha { get; set; }
+    public int Pontuacao { get; set; }
+    public int Nivel { get; set; }
 
     public static Usuario Instancia {
         get {
@@ -18,24 +13,11 @@ class Usuario // Singleton
             return _instancia;
         }
     }
-
-    public string Nome {
-        get { return _nome; }
-        set { _nome = value; }
-    }
-
-    public string Senha {
-        get { return _senha; }
-        set { _senha = value; }
-    }
-
-    public int Pontuacao {
-        get { return _pontuacao; }
-        set { _pontuacao = value; }
-    }
-
-    public int Nivel {
-        get { return _nivel; }
-        set { _nivel = value; }
+    
+    private Usuario() {
+        Nome = "";
+        Senha = "";
+        Pontuacao = -1;
+        Nivel = -1;
     }
 }

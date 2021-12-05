@@ -4,22 +4,18 @@ using UnityEngine.UI;
 
 public class ButtonSubject : MonoBehaviour, ISubject  // Concrete Subject
 {
-    private BtnColor _colorState = BtnColor.Normal;
-    private Image _btnImage;
+    public BtnColor ColorState { get; set; }
+    public Image BtnImage { get; set; }
     public List<IObserver> _observers;
     [SerializeField] private string[] _answers;
     [SerializeField] private ControladorPerguntas _answerController;
 
-    public Image BtnImage { get => _btnImage; set => _btnImage = value; }
-    internal BtnColor ColorState {
-        get => _colorState; set => _colorState = value;
-    }
     public string[] Answers { get => _answers; set => _answers = value; }
 
     void Start()
     {
         _observers = new List<IObserver>();
-        _btnImage = GetComponentInParent<Image>();
+        BtnImage = GetComponentInParent<Image>();
         Attach( new ButtonObserver(this) );
     }
 
@@ -40,13 +36,13 @@ public class ButtonSubject : MonoBehaviour, ISubject  // Concrete Subject
 
     public void DischangeColor()
     {
-        _colorState = BtnColor.Normal;
+        ColorState = BtnColor.Normal;
         Notify();
     }
 
     public void ChangeColor()
     {
-        _colorState = _answerController.VerificaResposta(_answers)
+        ColorState = _answerController.VerificaResposta(_answers)
             ? BtnColor.Green
             : BtnColor.Red;
 

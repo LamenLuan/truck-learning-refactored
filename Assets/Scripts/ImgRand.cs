@@ -2,12 +2,11 @@
 
 public class ImgRand : MonoBehaviour
 {
-    private int indexIMG;
+    public int IndexIMG { get; set; }
     [SerializeField] private Sprite[] _listaSprites;
     private SpriteRenderer _spriteRenderer;
     public static ImgRand Instance;
 
-    public int IndexIMG { get => indexIMG; set => indexIMG = value; }
     public Sprite[] ListaSprites {
         get => _listaSprites; set => _listaSprites = value;
     }
@@ -20,7 +19,7 @@ public class ImgRand : MonoBehaviour
     
     void Start()
     {
-        indexIMG = Usuario.Instancia.Nivel;
-        _spriteRenderer.sprite = _listaSprites[indexIMG];
+        IndexIMG = Usuario.Instancia.Nivel;
+        _spriteRenderer.sprite = _listaSprites[IndexIMG];
     }
 }

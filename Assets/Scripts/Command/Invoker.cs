@@ -1,15 +1,14 @@
 class Invoker // Invoker
 {
-    private ICommand _command;
-    internal ICommand Command { get => _command; set => _command = value; }
+    public ICommand Command { get; set; }
 
     public Invoker(ICommand command)
     {
-        _command = command;
+        Command = command;
     }
 
     public void ExecuteCommand()
     {
-        if(_command != null) _command.Execute();
+        if(Command != null) Command.Execute();
     }
 }
