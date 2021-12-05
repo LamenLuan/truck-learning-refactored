@@ -52,23 +52,19 @@ public class AudioManager : MonoBehaviour
             musicaBG.Pause();
             sonsFX.Stop();
 
-            if(Frases.Instance == true)
-            {
+            if(Frases.Instance) {
                 Frases.Instance.Mudo = true;
                 Frases.Instance.AudioSource.Stop();
             }
 
-            
             botaooff.SetActive(true);
             botaoon.SetActive(false);
-
         }
         else if (!musicaBG.isPlaying || !sonsFX.isPlaying)
         {
             musicaBG.UnPause();
             
-            if (Frases.Instance == true)
-            {
+            if (Frases.Instance) {
                 Frases.Instance.Mudo = false;
                 Frases.Instance.AudioSource.UnPause();
             }
@@ -76,7 +72,6 @@ public class AudioManager : MonoBehaviour
             botaooff.SetActive(false);
             botaoon.SetActive(true);
         }
-
     }
 
     public void Destruir()
