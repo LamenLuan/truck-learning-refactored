@@ -42,7 +42,7 @@ public class peças : MonoBehaviour
         // Caso eu aumente esse limite, o jogo fica mais fácil.
         if(Vector2.Distance(transform.position, posicao_certa) < 1f) {
             if(!selecionada) {
-                if(encaixada == false) {
+                if(!encaixada) {
                     contador++;
                     // Se montou 2 peças, apresento o popup
                     if(contador == 2) {
@@ -52,7 +52,6 @@ public class peças : MonoBehaviour
                     vitoria++;
                     transform.position = posicao_certa; // Coloca ele no encaixe
                     encaixada = true;
-                    GetComponent<SortingGroup>().sortingOrder = 0;
                 }
                 GetComponent<SortingGroup>().sortingOrder = 0;
             }
